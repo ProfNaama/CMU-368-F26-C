@@ -1,3 +1,0 @@
-treatment_group,user_name,user_avatar,agent_name,agent_avatar,hidden_prompt,user_task_description,user_pre_questions,user_post_questions
-1,User,user_avatar_01.png,Alex,agent_avatar_1.png,hidden_prompt_single_turn.txt,task_instructions.html,Demographics;Pre_familiarity;Pre_involvement;Pre_habits;Pre_criteria;,Post_choice;Post_experience;Post_open;Post_human_likeness;Post_trust;
-2,User,user_avatar_01.png,Alex,agent_avatar_1.png,hidden_prompt_multi_turn.txt,task_instructions.html,Demographics;Pre_familiarity;Pre_involvement;Pre_habits;Pre_criteria;,Post_choice;Post_experience;Post_open;Post_human_likeness;Post_trust;
