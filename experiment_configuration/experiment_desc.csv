@@ -1,26 +1,40 @@
 page,title,header,body1
 chat,UXResearch,Movie and TV Show Recommendation Agent,
-consent,UXResearch,Consent Information,"<p>
-  You are invited to take part in a research study about how people use an AI chatbot to
-  discover movies and TV shows. The study has three parts: a short questionnaire, a chat with
-  an AI recommendation chatbot, and another short questionnaire at the end. There are no correct
-  or incorrect responses. This study evaluates the chatbot, not the participants.
-</p>
-<p>
-  <strong>What we collect.</strong> We record your questionnaire answers, the full text of your
-  conversation with the chatbot, and timing information (for example, how long each part takes).
-  We do not ask for your name or contact information. Please do not include personal identifying
-  information in your chat messages or questionnaire answers.
-</p>
-<p>
-  <strong>How your data is used.</strong> Your responses are used for research purposes only and
-  are analyzed together with the responses of other participants.
-</p>
-<p>
-  <strong>Voluntary participation.</strong> Taking part is voluntary. You may stop at any time by
-  closing your browser window; responses from sessions that are not completed are not saved.
-</p>
-"
+consent,UXResearch,Consent Information,"<p>This task is part of a research study conducted by Dr. Naama Ilany-Tzur at Carnegie Mellon University.</p>
+
+<h3>Purpose</h3>
+<p>The purpose of the research is to investigate how people work together with AI agents on short everyday tasks.</p>
+
+<h3>Procedure</h3>
+<p>Next you will answer a few short questions about your background. You will then be redirected to a webpage in which you will be asked to complete a short task with the help of an AI agent, followed by a few questions about your experience. The expected duration of participation is about 15 to 20 minutes.</p>
+
+<h3>Participant Requirements</h3>
+<p>Participation in this study is limited to individuals age 18 and older.</p>
+
+<h3>Risk</h3>
+<p>The risks and discomfort associated with participation in this study are no greater than those ordinarily encountered in daily life or during other online activities. Specifically, there is the risk of disclosing personal information while interacting with the AI agent. Please do not disclose any personal information or identifiable information throughout this study. In case you do we will delete this information as soon as possible. If you feel any discomfort, you should end your participation immediately.</p>
+
+<h3>Benefits</h3>
+<p>There may be no personal benefit from your participation in the study but the knowledge received may be of value the general understanding of how users are interacting with AI agents and what affects this interaction.</p>
+
+<h3>Compensation &amp; Costs</h3>
+<p>Upon completing your participation, you will be eligible for compensation as specified in Prolific (the online platform you were recruited through). The final page of this study shows a <strong>completion code</strong>. Copy that code and paste it into Prolific to receive your payment. There will be no cost to you if you participate in this study.</p>
+
+<h3>Future Use of Information</h3>
+<p>In the future once we have removed all identifiable information from your data, we may use it for our research studies, or we may distribute the data to other researchers for their research studies. We would do this without getting additional informed consent from you. Sharing of data with other researchers will only be done in such a manner that you will not be identified.</p>
+
+<h3>Confidentiality</h3>
+<p>The data captured for the research does not include any personally identifiable information about you. Your IP address will not be captured. The study will collect your research data through your use of a Salesforce web server. This company is not owned by CMU. The company will have access to the research data that you produce and any identifiable information that you share with them while using their product. Please note that CMU does not control the Terms and Conditions of the company or how they will use or protect any information that they collect.</p>
+
+<h3>Right to Ask Questions &amp; Contact Information</h3>
+<p>If you have any questions about this study, you should feel free to ask them by contacting the Principal Investigator now at <a href='mailto:nilanytz@andrew.cmu.edu'>nilanytz@andrew.cmu.edu</a>. If you have questions later, desire additional information, or wish to withdraw your participation, please contact the Principal Investigator by e-mail in accordance with the contact information listed above.</p>
+
+<p>If you have questions pertaining to your rights as a research participant, or you wish to report concerns, you should contact the Office of Research integrity and Compliance at Carnegie Mellon University. Email: <a href='mailto:irb-review@andrew.cmu.edu'>irb-review@andrew.cmu.edu</a>. Phone: 412-268-4721. Use this phone number only if you have a question about your rights as a research participant or want to report a concern about this study. For questions about the tasks or your payment, please email the Principal Investigator instead.</p>
+
+<h3>Voluntary Participation</h3>
+<p>Your participation in this research is voluntary. You may discontinue participation at any time during the research activity. You may print a copy of this consent form for your records.</p>
+
+<p>Please indicate your agreement or disagreement with the following by selecting ""Yes"" or ""No"":</p>"
 pre_questionnaire,UXResearch,Please read the following instructions,
 post_questionnaire,UXResearch,Thank you for participating,
 session_ended,UXResearch,Thank you for participating in the study.<br/>,
