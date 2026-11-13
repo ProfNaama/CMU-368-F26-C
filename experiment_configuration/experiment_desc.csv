@@ -1,5 +1,5 @@
 page,title,header,body1
-chat,UXResearch,Chat with an AI agent,
+chat,UXResearch,Movie and TV Show Recommendation Agent,
 consent,UXResearch,Consent Information,"<p>
   You are invited to take part in a research study about how people use an AI chatbot to
   discover movies and TV shows. The study has three parts: a short questionnaire, a chat with
@@ -23,7 +23,7 @@ consent,UXResearch,Consent Information,"<p>
 "
 pre_questionnaire,UXResearch,Please read the following instructions,
 post_questionnaire,UXResearch,Thank you for participating,
-session_ended,UXResearch,Thank You for participating in the study.<br/>,
+session_ended,UXResearch,Thank you for participating in the study.<br/>,
 error,UXResearch,We are sorry - an error has occurred. Please close your browser and try again,
-welcome_code,UXResearch,Welcome to UXResearch,Please enter your access code
+welcome_code,UXResearch,Welcome,"<p>Thank you for participating in this study! Our goal is to understand how individuals use an AI chatbot to discover movies and TV shows.</p><p>There are no correct or incorrect responses. This study evaluates the chatbot, not the participants.</p><p>Please enter your access code below to begin.</p>"
 user_preferences,UXResearch,Welcome to the ChatLab experiment website,On the next page you will be asked to engage with an AI agent. Please personalize your preferences:
