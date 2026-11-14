@@ -331,3 +331,17 @@ ol {
     border-bottom: 2px solid var(--gray);
     width: 100%;
 }
+
+/* consent form email hyperlinks */
+.controlled_body a[href^="mailto:"] {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: normal;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+    text-decoration: underline;
+}
