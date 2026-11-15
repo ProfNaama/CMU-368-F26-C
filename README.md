@@ -258,6 +258,7 @@ SESSION_SECRET=replace_with_a_long_random_secret
 - `REDIRECT_URL`: URL to redirect participants after completion (used to redirect users back to the referrer site ,e.g. Prolific).
 - `OPENAI_TOKEN_LIMIT`: Maximum tokens for OpenAI responses (default is 1000).
 - `OPENAI_MODEL`: OpenAI model to use (default `gpt-4o`).
+- `OPENAI_TEMPERATURE`: How random the model's replies are, from 0 (most consistent) upward (default `0.2`).
 - `FAKE_LLM_RESPONSE`: Fixed assistant reply used when `OPENAI_API_KEY` is not set. Optional: if omitted, `config.js` supplies a default test reply.
 - `DATABASE_URL`: PostgreSQL connection string for database-backed code validation and result storage.
 - `RESULTS_PGTABLE`: PostgreSQL table name for results storage (default `uxresearch_results`).
@@ -342,6 +343,7 @@ node app.js
 	- **agent_avatar**: Avatar image filename for the agent; displayed in chat UI.
 		- **hidden_prompt**: Filename (under `experiment_configuration/hidden_prompts_bank/`) containing the system/hidden prompt injected to the LLM for this treatment group (applied at the beginning of the conversation as the system role).
 	- **user_task_description**: Filename (under `experiment_configuration/user_tasks_bank/`) or HTML snippet describing the participant task; rendered on the chat page, before the chat begins.
+	- **opening_message**: Optional filename (under `experiment_configuration/opening_messages_bank/`) with the first message the agent sends. It is shown when the chat page loads, added to the conversation sent to the model, and saved with the results.
 	- **user_pre_questions**: Semicolon-separated question block names (from `questions_bank.csv`) to present before the task.
 	- **user_post_questions**: Semicolon-separated question block names (from `questions_bank.csv`) to present after the task.
 
