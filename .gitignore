@@ -1,6 +1,6 @@
 node_modules/
 .vscode/
 .DS_Store
-# eval outputs (can contain lots of files)
-evals/results/
+# evals stay local for now (not part of the repo)
+evals/
 .venv/
