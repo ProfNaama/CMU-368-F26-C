@@ -61,26 +61,26 @@
   },
   {
     "id": "p06_korean_drama",
-    "note": "Fine with subtitles",
+    "note": "Emotional, avoids violence",
     "answers": [
       "A TV show",
       "Romance and drama",
       "Emotional, I'm okay crying",
       "Crash Landing on You",
       "A few episodes tonight",
-      "Subtitles are fine, just no violence"
+      "No violence"
     ]
   },
   {
-    "id": "p07_no_subtitles_action",
-    "note": "Avoid constraint: subtitles",
+    "id": "p07_action_no_sad_endings",
+    "note": "Avoid constraint: sad endings",
     "answers": [
       "A movie",
       "Action",
       "Pumped up, something fun and loud",
       "Extraction",
       "Under 2 hours",
-      "No subtitles, I want it in English"
+      "No sad endings"
     ]
   },
   {
