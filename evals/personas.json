@@ -1,0 +1,146 @@
+[
+  {
+    "id": "p01_light_comedy",
+    "note": "Clear, easy case",
+    "answers": [
+      "A movie",
+      "Comedy, rom-coms",
+      "Light and funny, I had a long day",
+      "Crazy Rich Asians",
+      "About 2 hours",
+      "Nothing too sad or violent"
+    ]
+  },
+  {
+    "id": "p02_crime_binge",
+    "note": "Wants a series to binge",
+    "answers": [
+      "A TV show",
+      "Crime, thrillers",
+      "Intense, I want to be hooked",
+      "Ozark",
+      "I have the whole weekend",
+      "No horror"
+    ]
+  },
+  {
+    "id": "p03_scifi_mindbender",
+    "note": "Specific taste",
+    "answers": [
+      "Either is fine",
+      "Sci-fi and mysteries",
+      "Mind-bending",
+      "Dark",
+      "A couple of hours tonight",
+      "Nothing too slow"
+    ]
+  },
+  {
+    "id": "p04_family_night",
+    "note": "Watching with kids",
+    "answers": [
+      "A movie",
+      "Animation, adventure",
+      "Fun, it's family movie night with my kids (8 and 11)",
+      "The Mitchells vs. the Machines",
+      "Around 90 minutes",
+      "No scary stuff or bad language"
+    ]
+  },
+  {
+    "id": "p05_documentary",
+    "note": "Non-fiction",
+    "answers": [
+      "Either",
+      "Documentaries, true stories",
+      "Curious, I want to learn something",
+      "Our Planet",
+      "An hour or so",
+      "Nothing about true crime"
+    ]
+  },
+  {
+    "id": "p06_korean_drama",
+    "note": "Emotional, avoids violence",
+    "answers": [
+      "A TV show",
+      "Romance and drama",
+      "Emotional, I'm okay crying",
+      "Crash Landing on You",
+      "A few episodes tonight",
+      "No violence"
+    ]
+  },
+  {
+    "id": "p07_action_no_sad_endings",
+    "note": "Avoid constraint: sad endings",
+    "answers": [
+      "A movie",
+      "Action",
+      "Pumped up, something fun and loud",
+      "Extraction",
+      "Under 2 hours",
+      "No sad endings"
+    ]
+  },
+  {
+    "id": "p08_horror_fan",
+    "note": "Likes what others avoid",
+    "answers": [
+      "A movie",
+      "Horror",
+      "I want to be scared",
+      "The Conjuring",
+      "About 2 hours",
+      "Nothing cheesy"
+    ]
+  },
+  {
+    "id": "p09_sitcom_background",
+    "note": "Short episodes",
+    "answers": [
+      "A TV show",
+      "Sitcoms",
+      "Relaxed, something easy to have on",
+      "The Office",
+      "30 minutes at a time",
+      "Nothing too dramatic"
+    ]
+  },
+  {
+    "id": "p10_period_drama",
+    "note": "Historical",
+    "answers": [
+      "Either",
+      "Historical dramas",
+      "Thoughtful",
+      "The Crown",
+      "I have time, no rush",
+      "Nothing with a slow start"
+    ]
+  },
+  {
+    "id": "p11_vague",
+    "note": "Edge case: vague answers",
+    "answers": [
+      "Idk",
+      "Anything really",
+      "Not sure",
+      "I liked some stuff",
+      "Whatever",
+      "No"
+    ]
+  },
+  {
+    "id": "p12_short_answers",
+    "note": "Edge case: one-word answers",
+    "answers": [
+      "Movie",
+      "Thriller",
+      "Tense",
+      "Gone Girl",
+      "2h",
+      "Gore"
+    ]
+  }
+]

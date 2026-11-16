@@ -66,7 +66,11 @@ block content
             updateConversationScroll();
         }
     
+        const opening_message = !{opening_message || '""'};
+
         $(document).ready(function(){
+            // show Alex's opening message
+            if (opening_message) { addAgentText(opening_message); }
             $('#chatForm').on('submit', function(e){
                 e.preventDefault();
                 $("#conversation").children().removeClass("chat-last");

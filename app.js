@@ -58,7 +58,7 @@ async function getLLMResponse(conversation) {
         messages: conversation,
         model: config.apiModel,
         max_tokens: config.apiTokenLimit,
-        temperature: 0.7
+        temperature: config.apiTemperature
     });
     return chatCompletion.choices[0].message.content;
 }
@@ -158,7 +158,16 @@ function renderChat(req, res, next) {
         if (!sessionManager.getSystemRoleHiddenContent()) {
             sessionManager.setChatEnded(true);
         } else {
+            // Alex opens the conversation: add the treatment group's scripted opening message
+            // to the conversation history once, so GPT-4o sees it and it is saved with the results.
+            const conversationSoFar = sessionManager.getConversationContext() || [];
+            const openingMessage = helpers.getAgentOpeningMessage(req);
+            if (conversationSoFar.length === 0 && openingMessage) {
+                sessionManager.addToConversationContext({ role: 'assistant', content: openingMessage, interactionTime: sessionManager.getAndResetInteractionTime() });
+            }
             let renderParams = helpers.getRenderingParamsForPage("chat");
+            // the opening message is shown when the chat page loads
+            renderParams["opening_message"] = JSON.stringify(openingMessage || "").replace(/</g, '\\u003c');
             renderParams["preferences"] = sessionManager.getPreferences();
             renderParams["task_description"] = helpers.getUserTaskDescription(req);
             renderParams["form_type"] = POST_RESPONSE_TYPES.CHAT_ENDED;

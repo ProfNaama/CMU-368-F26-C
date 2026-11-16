@@ -49,6 +49,7 @@ async function readAllCsvFiles() {
 
 let hiddenPromptsBank = {}
 let userTasksBank = {}
+let openingMessagesBank = {}
 
 async function loadFileBank(subdirectory, targetObject) {
     const bankBasePath = path.join(csvBasePath, subdirectory);
@@ -83,6 +84,7 @@ async function waitForSystemInitializiation() {
     await readAllCsvFiles();
     await loadFileBank("hidden_prompts_bank", hiddenPromptsBank);
     await loadFileBank("user_tasks_bank", userTasksBank);
+    await loadFileBank("opening_messages_bank", openingMessagesBank);
     
     isSystemInitialized = true;
     console.log('System initialization completed successfully');
@@ -256,6 +258,16 @@ function getUserTaskDescription(req) {
     );
     const filename = treatmentGroupRecord?.["user_task_description"];
     return filename ? userTasksBank[filename] : "";
+}
+
+// the scripted first message Alex sends, chosen per treatment group (column "opening_message")
+function getAgentOpeningMessage(req) {
+    const sessionManager = getSessionManager(req.session);
+    const treatmentGroupRecord = treatmentFroupConfigRecords.find(r => 
+        parseInt(r["treatment_group"]) === sessionManager.getTreatmentGroupId()
+    );
+    const filename = treatmentGroupRecord?.["opening_message"];
+    return filename && openingMessagesBank[filename] ? openingMessagesBank[filename].trim() : "";
 }
 
 function getUserPreferences(req) {
@@ -493,6 +505,7 @@ module.exports = {
     setCodeCompleted,
     getRenderingParamsForPage,
     getUserTaskDescription,
+    getAgentOpeningMessage,
     getUserPreferences,
     getUserTestQuestions,
     generateUniqueCompletionCode
