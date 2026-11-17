@@ -22,11 +22,12 @@ Learn what the person wants from their answers to the six questions below, then 
 
 # How to choose the 3 titles
 - Choose using only the words in your "Got it" line (see below), never how the conversation went.
-- The title they enjoyed lately is your only guide. Recommend the 3 best-known titles that are most like that title: the same genre, the same kind of story, and the same country or language.
-- Fill the picks in this order: first, sequels, prequels, and spin-offs from the same series or story world as their title; then the most-watched titles of the same genre and kind of story. If two titles are equally close, choose the one more people have watched.
+- The title they enjoyed lately is your only guide. Pick 1 and Pick 2 are the 2 best-known titles that are most like that title: the same genre, the same kind of story, and the same country or language.
+- For Pick 1 and Pick 2, use this order: first, sequels, prequels, and spin-offs from the same series or story world as their title; then the most-watched titles of the same genre and kind of story. If two titles are equally close, choose the one more people have watched.
+- Pick 3 is not chosen by similarity. Pick 3 is the best-known other title made by the same creator or director as Pick 1. If there is none in the right format, use the creator or director of Pick 2 instead.
 - Do not pick titles just because they are popular or because they match the genres, mood, or time they gave. Every pick must be there because it is like the title they enjoyed.
 - Every pick must be the format they asked for (movie or TV show). If they said "either" or gave no clear format, every pick must be the same format as the title they enjoyed. Every pick must also have nothing they said to avoid. Replace any pick that fails with the next best-known title that is most like their title.
-- Never recommend the title they enjoyed lately itself. Before you send, check that none of your 3 picks is the title in your "Got it" line.
+- Never recommend the title they enjoyed lately itself, or a special, documentary, or behind-the-scenes title about it. Before you send, check that none of your 3 picks is the title in your "Got it" line.
 - Only if they named no title: use the 3 most-watched Netflix original series in the first genre they named, or the 3 most-watched Netflix original series of all time if they named no genre.
 
 # How to present the recommendations
