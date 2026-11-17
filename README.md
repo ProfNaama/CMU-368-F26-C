@@ -111,14 +111,14 @@ To read the saved results afterwards: `Get-Content "$env:TEMP\results.txt"`. Sto
 Generate a local JSON code file:
 
 ```bash
-python pre_requisites/generate_codes.py --expid local_demo --format local-json > /tmp/uxresearch_local_codes.json
+python pre_requisites/generate_codes.py --expid local_demo --format local-json > /tmp/tri_ca_local_codes.json
 ```
 
 Then start UXResearch with that local code file:
 
 ```bash
 EXPERIMENT_ID=local_demo \
-LOCAL_CODES_FILE=/tmp/uxresearch_local_codes.json \
+LOCAL_CODES_FILE=/tmp/tri_ca_local_codes.json \
 FAKE_LLM_RESPONSE="This is a fake UXResearch response for local testing." \
 RESULTS_FILE=/tmp/results.txt \
 node app.js
@@ -127,9 +127,9 @@ node app.js
 **Windows (PowerShell):** PowerShell's `>` can save the file in an encoding the app cannot read, so use `Out-File` with an explicit encoding instead:
 
 ```powershell
-python pre_requisites\generate_codes.py --expid local_demo --format local-json | Out-File -Encoding ascii "$env:TEMP\uxresearch_local_codes.json"
+python pre_requisites\generate_codes.py --expid local_demo --format local-json | Out-File -Encoding ascii "$env:TEMP\tri_ca_local_codes.json"
 $env:EXPERIMENT_ID = "local_demo"
-$env:LOCAL_CODES_FILE = "$env:TEMP\uxresearch_local_codes.json"
+$env:LOCAL_CODES_FILE = "$env:TEMP\tri_ca_local_codes.json"
 $env:FAKE_LLM_RESPONSE = "This is a fake UXResearch response for local testing."
 $env:RESULTS_FILE = "$env:TEMP\results.txt"
 node app.js
@@ -140,7 +140,7 @@ node app.js
 
 #### 6. **Test flow**
 - For the minimal smoke test, enter the reusable code `UXResearch`.
-- For the local-with-codes path, open `/tmp/uxresearch_local_codes.json` and enter one of the generated codes.
+- For the local-with-codes path, open `/tmp/tri_ca_local_codes.json` and enter one of the generated codes.
 - Walk through consent, baseline questionnaire, the AI chat task, and post-study questionnaire.
 - Results will be appended to the file set by `RESULTS_FILE` (default: none) or stored in PostgreSQL if configured.
 - For many small ad hoc studies on one machine, these local paths may already be enough.
@@ -176,7 +176,7 @@ For live or public studies, use PostgreSQL for participant-code validation and c
 - Keep the local-file-backed `LOCAL_CODES_FILE` mode for local or ad hoc single-machine runs; it is already covered in `Getting Started` above.
 
 #### 4. **Generate and Load Participant Codes**
-For live deployment, generate codes for a specific experiment ID and load them into `uxresearch_codes`.
+For live deployment, generate codes for a specific experiment ID and load them into `tri_ca_codes`.
 
 Basic generator usage:
 ```bash
@@ -213,7 +213,7 @@ python pre_requisites/generate_codes.py --expid your_experiment_id --format loca
 
 By default (`--format all`), the script prints three sections:
 - `csv`: a simple code list that is easy to inspect or paste into a spreadsheet.
-- `postgresql`: an `INSERT` statement block for the `uxresearch_codes` table.
+- `postgresql`: an `INSERT` statement block for the `tri_ca_codes` table.
 - `local json`: JSON records ready to save into `LOCAL_CODES_FILE`.
 
 For local-file-backed studies, create a JSON file and point `LOCAL_CODES_FILE` to it. Example:
@@ -261,8 +261,8 @@ SESSION_SECRET=replace_with_a_long_random_secret
 - `OPENAI_TEMPERATURE`: How random the model's replies are, from 0 (most consistent) upward (default `0.2`).
 - `FAKE_LLM_RESPONSE`: Fixed assistant reply used when `OPENAI_API_KEY` is not set. Optional: if omitted, `config.js` supplies a default test reply.
 - `DATABASE_URL`: PostgreSQL connection string for database-backed code validation and result storage.
-- `RESULTS_PGTABLE`: PostgreSQL table name for results storage (default `uxresearch_results`).
-- `CODES_PGTABLE`: PostgreSQL table name for participant codes (default `uxresearch_codes`).
+- `RESULTS_PGTABLE`: PostgreSQL table name for results storage (default `tri_ca_results`).
+- `CODES_PGTABLE`: PostgreSQL table name for participant codes (default `tri_ca_codes`).
 - `SESSION_SECRET`: Secret used to sign session cookies. If omitted, the server generates a secure random secret at startup.
 
 
@@ -725,7 +725,7 @@ If you use this platform in academic work, please cite the associated publicatio
 ### Preferred citation
 
 ```bibtex
-@misc{uxresearch_platform,
+@misc{tri_ca_platform,
   title        = {UXResearch},
   author       = {Contributors},
   year         = {2026},

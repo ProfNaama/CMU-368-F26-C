@@ -24,8 +24,8 @@ config.fakeLlmResponse = process.env['FAKE_LLM_RESPONSE'] || "This is a fake UXR
 
 // postgres
 config.connectionString = process.env['DATABASE_URL'];
-config.resultsTable = process.env['RESULTS_PGTABLE'] || "uxresearch_results";
-config.codesTable = process.env['CODES_PGTABLE'] || "uxresearch_codes";
+config.resultsTable = process.env['RESULTS_PGTABLE'] || "tri_ca_results";
+config.codesTable = process.env['CODES_PGTABLE'] || "tri_ca_codes";
 config.localCodesFile = process.env['LOCAL_CODES_FILE'];
 
 

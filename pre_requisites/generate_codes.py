@@ -15,7 +15,7 @@ def generate_csv_format(codes):
 
 # prapare for PostgreSQL
 def generate_postgresql_format(codes, expid):
-    print ("INSERT INTO uxresearch_codes (code, expid) VALUES")
+    print ("INSERT INTO tri_ca_codes (code, expid) VALUES")
     print(",\n".join([f'(\'{c}\',\'{expid}\')' for c in codes]))
     print (";")
 
