@@ -14,7 +14,10 @@ config.apiTokenLimit = parseInt(process.env["OPENAI_TOKEN_LIMIT"] || "1000");
 config.apiModel = process.env['OPENAI_MODEL'] || "gpt-4o";
 // lower temperature = less random replies, so participants with similar answers get similar recommendations
 const parsedTemperature = parseFloat(process.env['OPENAI_TEMPERATURE']);
-config.apiTemperature = Number.isNaN(parsedTemperature) ? 0 : parsedTemperature;
+// fixed at 0 (ignores OPENAI_TEMPERATURE) so both versions give the same picks for the same answers
+config.apiTemperature = 0;
+// a fixed seed makes the model repeat itself more reliably
+config.apiSeed = 368;
 
 // a fake response for testing
 config.fakeLlmResponse = process.env['FAKE_LLM_RESPONSE'] || "This is a fake UXResearch response for local testing.";
