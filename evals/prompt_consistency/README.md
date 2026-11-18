@@ -12,10 +12,10 @@ Each of 12 fixed test participants (personas) supplied the same six answers in b
 
 | Format | How the answers arrive | Website group (ID) | Website prompt filename | Browser-test label |
 |---|---|---|---|---|
-| All at once | Six answers in one numbered message | 1 | `hidden_prompt_single_turn.txt` | `multi` |
-| One at a time | One answer per message, across six exchanges | 2 | `hidden_prompt_multi_turn.txt` | `single` |
+| All at once | Six answers in one numbered message | 1 | `hidden_prompt_single_turn.txt` | `single` |
+| One at a time | One answer per message, across six exchanges | 2 | `hidden_prompt_multi_turn.txt` | `multi` |
 
-The browser labels are reversed relative to the prompt filenames. This report uses **all at once** and **one at a time** to avoid that ambiguity.
+The prompt filenames, browser scripts, saved transcript filenames, and generated summary use the same convention: **single-turn = all at once** and **multi-turn = one at a time**. The 653 saved transcript filenames were corrected from the actual opening messages without changing their contents or any historical scores. Their original archive and a filename/hash receipt are kept under `evals/backups/` on Rico's computer. Historical execution logs retain the original labels printed at the time; transcript readers determine the format from the opening message.
 
 One **chat** is a complete conversation in one format. One **pair** is the same persona and trial in both formats. A quick run has 12 personas × 2 formats × 1 trial = 24 chats / 12 pairs. A full run has 12 × 2 × 3 = 72 chats / 36 pairs. In a full run, trial 1 is paired with trial 1 across formats, and likewise for trials 2 and 3.
 
@@ -61,7 +61,7 @@ Eval #3 has 23 saved chats: 11 complete pairs and one unpaired chat. Only its 11
 
 ### Repeatability and identical replies: full runs only
 
-These are different measurements from agreement between formats. The quick runs have one trial per persona/format, so there is no repeatability comparison for them.
+These supplementary measurements describe variation across repeated conversations. The primary success measure remains an exact match of all three recommended titles between formats, ignoring their order. The quick runs have one trial per persona/format, so there is no repeatability comparison for them.
 
 | Round (ID) | One-at-a-time title repeats (matches / comparisons) | All-at-once title repeats (matches / comparisons) | Identical final replies, both formats (matches / comparisons) |
 |---|---:|---:|---:|
@@ -203,13 +203,11 @@ The historical `main` snapshot at `4cfbbe4` contains the Eval #15 prompts with t
 
 Commit `3038eb2` contains a later **untested draft**, included in both inspected remote refs (`main` and `prompt-consistency`) at `8d25ea7`. It removes the Netflix-original-only restriction and replaces the favorite-only guide with an ordered use of all answers: format and avoidances first, then similarity to the favorite, genres/mood, and available time. It uses popularity then earlier release as tie-breaks, changes the guide to `Based on your answers, here are 3 [movies or TV shows] for you:`, and uses genres/mood if no favorite is named. There is no recorded score for this draft, and it is not presented as Eval #17 or assigned any earlier round's score. Its presence on `main` does not independently establish deployment.
 
-At the time of this documentation update, additional uncommitted working-copy edits restore the Netflix-original-only restriction to both prompts and add “Netflix original” to the new guide line. They retain the draft's all-answer priority order. Those working-copy edits also have no recorded evaluation score and are distinct from the committed `3038eb2` version. This describes the inspected local files, not a deployed version.
-
 ## What the results support, and their limits
 
 - The recorded agreement improved from 5/12 at baseline to a best full-run score of 31/36, but the rounds have different sample sizes and many change several rules at once.
 - Later high-agreement prompts narrow the candidate pool and prioritize the favorite title over some other preferences. Higher agreement therefore does not demonstrate better personalization.
-- The browser rounds do not use the separate direct API evaluator's AI-judge fit/tone grades. They do not establish title existence, current Netflix availability, satisfaction, or statistical significance. The same 12 personas were reused while tuning; unseen-persona performance remains unknown.
+- The browser rounds measure exact agreement of the three recommended titles. They do not establish recommendation quality, title existence, current Netflix availability, satisfaction, or statistical significance. The same 12 personas were reused while tuning; unseen-persona performance remains unknown.
 - The comparison checks normalized title strings, ignores order, and relies on a parser. A shared title set can still have different rankings or explanations. A parser failure can affect a score.
 - Model settings and commit references document intended code changes; hosted environment overrides and deployment state were not independently verified here.
 
@@ -217,7 +215,7 @@ At the time of this documentation update, additional uncommitted working-copy ed
 
 The summary files in this folder are tracked in Git. They were originally under the root folder `prompt_consistency_eval/`; commit `90ad4b1` moved them here. Both inspected remote refs, `main` and `prompt-consistency` at `8d25ea7`, include the move.
 
-Raw transcripts are local-only at `evals/browser_results/baseline/` and `evals/browser_results/eval<N>/`, with small preflight runs in separate folders. There is no Eval #4 transcript folder. Test participants are in the local-only `evals/personas.json`; `evals/run_batch.py` computes the browser scores. These are paths on the working computer, not folders a GitHub reader can open from this report. Each transcript includes study completion information, so raw chats have not been added to Git.
+Raw transcripts are kept on Rico's computer at `evals/browser_results/baseline/` and `evals/browser_results/eval<N>/`, with small preflight runs in separate folders. There is no Eval #4 transcript folder. Test participants are in `evals/personas.json` on Rico's computer; `evals/run_batch.py` computes the browser scores. These paths refer to Rico's computer; they are not folders a GitHub reader can open from this report. Each transcript includes study completion information, so raw chats have not been added to Git.
 
 For this documentation update, all recorded browser match counts, full-run title-repeat ratios, and identical-reply ratios were recalculated offline from the saved transcripts. Score values were preserved; no new model conversations were run. Commit references were checked against the local Git history.
 
@@ -227,4 +225,4 @@ Browser tests fill questionnaire text fields with `EVAL TEST` and finish the nor
 
 The workflow recorded in commit `8d25ea7` is to keep testing through the site and have Naama remove the `EVAL TEST` sessions afterwards. This is the documented cleanup responsibility, not evidence that any particular cleanup has already happened.
 
-The number of test rows in any hosted database, their destination, and any cleanup are not verified by this report. Recognizing the marker in local test code does not prove which remote rows exist or that any rows have been removed.
+The number of test rows in any hosted database, their destination, and any cleanup are not verified by this report. Recognizing the marker in the test code on Rico's computer does not prove which remote rows exist or that any rows have been removed.
