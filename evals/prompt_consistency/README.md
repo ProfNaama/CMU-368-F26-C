@@ -29,38 +29,38 @@ The comparison extracts numbered picks from Alex's final message and normalizes 
 
 ## Score table: all rounds
 
-`—` means not applicable or not measured, not a score of zero. Rates are rounded to the nearest whole percent, using the completed pairs as the denominator. Preflight folders are excluded. Three-trial rows below use all three trials, not just their initial quick check.
+A pair compares the two chat formats using the same test participant and attempt. It matches when both versions recommend the same three titles, in any order. The table counts completed pairs across all trials in each round. A dash means there is no score.
 
-| Round (ID) | Change summary | Saved chats (count) | Exact matches (pairs / completed pairs) | Match rate (%) |
+| Round | What changed | Chats saved | Pairs with the same 3 titles | Match rate (%) |
 |---|---|---:|---:|---:|
-| Baseline | Starting instructions; Alex chooses without a shared step-by-step method | 24 | 5/12 | 42 |
-| 1 | Use the same choosing rules; ask only the next question; summarize answers in order | 24 | 5/12 | 42 |
-| 2 | Accept vague answers; favor widely watched titles; lower the usual variation setting | 24 | 4/12 | 33 |
-| 3 | Give picks 1, 2, and 3 different jobs; one conversation is missing | 23 | 6/11 | 55 |
-| 4 | Propose a prewritten menu of titles, then remove it before testing | 0 | — (not run) | — |
-| 5 | Copy all answers, but choose mainly from the favorite; stop using mood and time | 24 | 7/12 | 58 |
-| 6 | Choose similar stories and say why before listing the picks | 24 | 9/12 | 75 |
-| 7 | Prefer related stories or creators; use one movie/show format | 72 | 21/36 | 58 |
-| 8 | Keep the prompt; force low-variation settings and add a repeatability seed | 24 | 6/12 | 50 |
-| 9 | Prefer sequels and spin-offs; narrow the choices when no favorite is given | 24 | 7/12 | 58 |
-| 10 | Choose the third pick from the maker of the first recommendation | 24 | 6/12 | 50 |
-| 11 | Write all three title names first; remove the special creator rule for pick 3 | 24 | 5/12 | 42 |
-| 12 | Allow only Netflix originals; simplify choosing; explain each title underneath | 24 | 9/12 | 75 |
-| 13 | Write “Netflix original” and the movie/show format before naming titles | 72 | 31/36 | 86 |
-| 14 | When two titles fit equally well, choose the earlier release | 72 | 30/36 | 83 |
-| 15 | Clarify which shows are excluded under the Netflix-original rule | 72 | 30/36 | 83 |
-| 16 | Keep Eval #15 instructions; try the older variation settings, then restore them | 72 | 26/36 | 72 |
-| Updated prompts awaiting evaluation | Use supplied answers in context, align question wording, and simplify the task instructions | 0 | — (pending) | — |
+| Baseline | Alex chose three titles without a set order for weighing the answers. | 24 | 5/12 | 42 |
+| 1 | Use the same rules to choose titles in both chats. In multi-turn, ask the next question without reacting first. | 24 | 5/12 | 42 |
+| 2 | Accept replies like “idk,” favor popular titles, and lower the default setting that controls how much answers vary. | 24 | 4/12 | 33 |
+| 3 | Give each pick a job. Match the favorite, match genre and mood, then match format and available time. | 23 | 6/11 | 55 |
+| 4 | Proposed choosing from a fixed list of titles. Dropped the idea before testing. | 0 | — (not run) | — |
+| 5 | Repeat all six answers in “Got it.” Choose mainly from what fans of the favorite might watch next. Leave mood and time out of the choice. | 24 | 7/12 | 58 |
+| 6 | Pick titles that resemble the favorite in genre, story, or language. Say “Since you liked…” before the list. | 24 | 9/12 | 75 |
+| 7 | Look first for titles in the same series or by the same creators. If the person says “either,” match the favorite’s movie or TV format. | 72 | 21/36 | 58 |
+| 8 | Keep the same instructions and use settings intended to give steadier picks when the answers repeat. | 24 | 6/12 | 50 |
+| 9 | Give sequels and spin-offs priority. If there’s no favorite, look for popular Netflix original TV shows. | 24 | 7/12 | 58 |
+| 10 | Choose the third pick from other titles by the creator or director of the first pick. | 24 | 6/12 | 50 |
+| 11 | List all three titles before explaining them. Drop the special creator rule for the third pick. | 24 | 5/12 | 42 |
+| 12 | Limit all three picks to Netflix originals. Put each explanation back under its title. | 24 | 9/12 | 75 |
+| 13 | Say “Netflix original movies” or “Netflix original TV shows” before the picks. Exclude shows that first aired on a TV network. | 72 | 31/36 | 86 |
+| 14 | When two titles fit equally well, pick the older release. | 72 | 30/36 | 83 |
+| 15 | Clarify that the TV-network rule applies in any country, even if Netflix later calls the show an original. | 72 | 30/36 | 83 |
+| 16 | Keep Round 15’s choosing rules. Test the older settings for how much Alex’s picks vary, then restore the settings from Round 15. | 72 | 26/36 | 72 |
+| Current prompts | Choose from the answers given. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. | 0 | — (pending) | — |
 
 ### What the table headers mean
 
 | Header | Definition | Unit / how to read it |
 |---|---|---|
-| Round (ID) | Baseline or the numbered prompt/settings revision | Identifier, not a score |
-| Change summary | Short description of what changed; expanded below | Text |
-| Saved chats (count) | Saved conversations included in that round, across both formats | Conversations; one extra unpaired conversation is included in Eval #3 |
-| Exact matches (pairs / completed pairs) | Pairs whose normalized title sets are identical, divided by pairs with both chats available | Count / count; `31/36` means 31 matching pairs out of 36 completed pairs |
-| Match rate (%) | `100 × exact matching pairs / completed pairs` | Percent, 0–100; it does not mean 86% of individual recommendations were good |
+| Round | Starting version, numbered round, or current prompts | Label |
+| What changed | Main change in that round | See the round history below for details |
+| Chats saved | Saved conversations across both formats | Number of chats |
+| Pairs with the same 3 titles | How many pairs chose the same three titles | `31/36` means 31 matches out of 36 completed pairs |
+| Match rate (%) | Share of completed pairs that matched | Percentage rounded to the nearest whole number |
 
 Eval #3 has 23 saved chats: 11 complete pairs and one unpaired chat. Only its 11 pairs enter the match rate. Eval #4 has no conversations and no score.
 
