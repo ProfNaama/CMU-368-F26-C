@@ -2,7 +2,11 @@
 
 This is the evaluation workspace on Rico's computer, inside `CMU-368-F26-C/evals/`. It contains the test participants, scripts, saved conversations, and reports used to compare Alex's two conversation formats. Most of this folder is deliberately excluded from GitHub.
 
-**Start with [the round-by-round report](prompt_consistency/README.md)** for what changed from the baseline through Eval #16, the scores, and definitions of every score column. Open [results.csv](prompt_consistency/results.csv) for the same rounds in a spreadsheet.
+**Latest prompt change: a NEW evaluation is still pending.** Alex is now instructed to use all six answers when choosing titles, rather than mainly choosing from the recently enjoyed title. Earlier rounds already sent Alex all six answers; the new change is how those answers are used. None of the historical match scores measures this latest version.
+
+**Start with [the round-by-round report](prompt_consistency/README.md)** for plain-language before-and-after explanations of the baseline through Eval #16, their scores, and the latest change awaiting a new evaluation. Open [results.csv](prompt_consistency/results.csv) for the same rounds in a spreadsheet.
+
+For the current outcome of all the revisions, see the [final list of changes still in place today](prompt_consistency/README.md#changes-still-in-place-today-compared-with-the-baseline). It also separates ideas that were tried and removed, and highlights the new evaluation still needed for the latest all-six-answer instructions.
 
 ## Folder structure
 
@@ -19,7 +23,7 @@ evals/
 ├── build_table.py                  Builds the older CSV/HTML comparison table
 ├── prompt_consistency/             The part of evals/ tracked in Git
 │   ├── README.md                   Detailed history, scores, definitions, and limits
-│   └── results.csv                 One row per round: baseline and Evals #1–#16
+│   └── results.csv                 Historical rounds plus the latest change marked not evaluated
 ├── backups/                        Original transcript archive and rename/hash receipt
 └── browser_results/                Saved website tests on Rico's computer
     ├── baseline/                   Original-prompt conversations
@@ -86,7 +90,7 @@ Change the label to the saved round and use `--trials 1` for a one-trial round. 
 
 | File | What one row represents | What it tells you |
 |---|---|---|
-| `prompt_consistency/results.csv` | One evaluation round | How each prompt or settings revision scored across its completed pairs |
+| `prompt_consistency/results.csv` | One historical evaluation round, plus a final pending-change row | Recorded match scores; the latest all-six-answer change has no score yet |
 | `browser_results/summary.csv` or `.html` | One persona in one format | The three picks, transcript, and shared-title count for an older standalone run |
 
 `build_table.py` reads only `.txt` files directly in `browser_results/`, keeping the newest file per persona and format. It does not read nested rounds such as `eval15/`, and its filename pattern does not accept the batch `_t1_` trial tag. Its table is not a combined summary of all evaluation rounds.
