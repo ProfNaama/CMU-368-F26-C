@@ -1,0 +1,18 @@
+eval,commit,change,chats_run,pairs_matched,pairs_total,match_pct,repeat_one_by_one,repeat_all_at_once,identical_replies_vs_trial1
+baseline,a98e34f,Original prompts,24,5,12,42,,,
+1,1ad375a,Shared title-choosing rules; one-by-one version asks only the bare questions,24,5,12,42,,,
+2,a5cc5bb,Vague answers count; most-famous tie-break; default temperature 0,24,4,12,33,,,
+3,5eaf974,One clear job per pick,23,6,11,55,,,
+4,15f29a8,Fixed title catalog (rejected and undone in f21a872; never run),0,,,,,,
+5,ac2be61,"Fixed ""Got it"" restatement line; the title they enjoyed is the main guide",24,7,12,58,,,
+6,14bb779,"One written guide line before the picks (""most like the title they enjoyed"")",24,9,12,75,,,
+7,e0e938c,"Fixed pick order; ""either"" means the format of the enjoyed title",72,21,36,58,18/24,18/24,2/48
+8,fc627c3,Temperature fixed at 0 and fixed seed 368 (code change in config.js and app.js),24,6,12,50,,,
+9,b9c3f78,Story-world-first order; narrower default; own-title check,24,7,12,58,,,
+10,ff8a6ad,Third pick by the creator of the first pick,24,6,12,50,,,
+11,3e9b45e,List the three titles together before any descriptions,24,5,12,42,,,
+12,0319a43,Simplest rules plus Netflix originals only,24,9,12,75,,,
+13,5b8de24,Format and Netflix-original written into the guide line,72,31,36,86,22/24,20/24,2/48
+14,6e0e206,Tie-break by earlier release date,72,30,36,83,22/24,23/24,6/48
+15,4f50c36,Clearer definition of a Netflix original (Breaking Bad / Money Heist examples),72,30,36,83,21/24,21/24,0/48
+16,87e7f0c,Settings test: original temperature setting and no seed; Eval 15 prompts unchanged,72,,36,,,,
