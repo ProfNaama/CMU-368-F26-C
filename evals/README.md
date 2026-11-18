@@ -52,8 +52,8 @@ The prompt files, browser scripts, saved transcript filenames, and generated sum
 
 | Conversation format | Website treatment group (ID) | Prompt and opening filenames | Browser script / transcript label |
 |---|---|---|---|
-| All six answers in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `single` |
-| One answer per message across six exchanges | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `multi` |
+| All six questions in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `single` |
+| One question per message | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `multi` |
 
 The prompt and opening files are under `experiment_configuration/hidden_prompts_bank/` and `experiment_configuration/opening_messages_bank/`. `treatment_groups_config.csv` maps the files to the website groups. The 653 saved transcript filenames were corrected using the actual opening message to identify the format. Their contents and historical scores were preserved. The original transcript archive and filename/hash receipt are under `evals/backups/` on Rico's computer. Historical execution logs retain the labels printed at the time; the readers classify transcripts from their openings, so older copies can still be read correctly.
 

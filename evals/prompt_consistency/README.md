@@ -489,4 +489,4 @@ This is the final list of changes that remain in the latest prompt files. It doe
 
 ### The latest version still needs its own new evaluation
 
-**The updated version at `3a446a6` still needs its own evaluation.** The earlier evaluations used the same six questions. A new run would measure title agreement with the current rules for choosing from supplied answers and for handling partial replies. All reported scores come from earlier rounds.
+**The updated version at `3a446a6` still needs its own evaluation.** A new run with the existing personas would measure title agreement when all six answers are supplied. Testing how single-turn responds to partial replies requires test cases that omit some answers. All reported scores come from earlier rounds.
