@@ -13,7 +13,7 @@
 - Until this change, every test chat finished the study flow, so the site saved it like a real session. About 600 test sessions were saved this way, across all the rounds, probably into the real `tri_ca_results` table.
 - Every test session can be recognised because its pre-questionnaire text answers are exactly "EVAL TEST".
 - We have no database access, so these rows have not been removed. Someone with access (Naama) needs to remove them, after first listing them to check.
-- **From now on** the app does not save a session to the database when its pre-questionnaire answers contain "EVAL TEST". Real participants are saved as before. The full test chats live in `evals/browser_results/` instead.
+- We decided not to change the live app code, so test chats are still saved to the database. The decision was to keep testing on the live site, and Naama deletes the "EVAL TEST" sessions afterwards. The full test chats are also kept in `evals/browser_results/`.
 
 ## What we were trying to do
 Alex recommends 3 movies or TV shows in two versions that should differ only in pacing:
