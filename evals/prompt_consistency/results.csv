@@ -253,7 +253,7 @@ WHAT CHANGED
 - If no favorite is given, choose using genres and mood.
 - Remove the Netflix-original-only restriction. Keep the requirement to recommend real, released titles believed available on Netflix US.
 - Introduce the picks as “Based on your answers,” rather than “Since you liked [title].”.
-- PR #6: Use the same first question and six-question wording in both conditions. Use the same recommendation limit of under 180 words. Single-turn can recommend after a partial reply. Multi-turn asks one unanswered question at a time and waits for all six answers.
+- PR #6: Use the same first question and six-question wording in both conditions. Retain the recommendation limit of under 180 words and remove the separate cap on multi-turn question messages. Single-turn can recommend after a partial reply. Multi-turn asks one unanswered question at a time and waits for all six answers.
 - PR #7: In both conditions, copy only supplied answers into “Got it” in question order. Use the original question each answer belongs to when choosing titles. Make the heading match the selected movie or show format.
 - PR #7: Remove the extra heading above the shared chat instructions.
 - Evaluation pending for this updated version. Earlier Eval #17 attempts saved no transcripts and predate these PRs.",0,,,,,,

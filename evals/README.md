@@ -2,7 +2,7 @@
 
 This is the evaluation workspace on Rico's computer, inside `CMU-368-F26-C/evals/`. It contains the test participants, scripts, saved conversations, and reports used to compare Alex's two conversation formats. Most of this folder is deliberately excluded from GitHub.
 
-**A new evaluation of the updated single-turn and multi-turn prompts is pending.** Both prompts tell Alex to use the answers participants provide and keep each answer tied to its question. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. The “Got it” line copies the answers given in question order. Both conditions start with the same first question, and the shared instructions above the chat now start at “Scenario.”
+**A new evaluation of the updated single-turn and multi-turn prompts is pending.** Each condition still uses its own prompt file. Both prompts tell Alex to use the answers participants provide and keep each answer tied to its question. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. The “Got it” line copies the answers given in question order. Both conditions start with the same first question, and the shared instructions above the chat now start at “Scenario.”
 
 **Start with [the round-by-round report](prompt_consistency/README.md)** for plain-language before-and-after explanations of the baseline through Eval #16, their scores, and the latest change awaiting a new evaluation. Open [results.csv](prompt_consistency/results.csv) for the same rounds in a spreadsheet.
 

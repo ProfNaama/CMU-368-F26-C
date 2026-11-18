@@ -428,7 +428,7 @@ The favorite therefore still has more weight than genre/mood and time; the chang
 
 - Remove the requirement that every title be a Netflix original. Titles should still be real, released, and believed available on Netflix US; there is no live catalog lookup.
 - Replace “Since you liked [title], here are 3 Netflix original…” with “Based on your answers, here are 3 [movies or TV shows] for you:”.
-- **PR #6 (`7952b2b`)** matched the exact first question in both opening messages and kept the six questions in the same order. It gave both conditions the same recommendation limit of under 180 words. It clarified that single-turn can recommend after any answer and multi-turn asks the next unanswered question until all six are answered.
+- **PR #6 (`7952b2b`)** matched the exact first question in both opening messages and kept the six questions in the same order. It retained the recommendation limit of under 180 words in both conditions and removed the separate cap on multi-turn question messages. It clarified that single-turn can recommend after any answer and multi-turn asks the next unanswered question until all six are answered.
 - **PR #7 (`3a446a6`)** gave both prompts the same “Got it” and recommendation rules. Alex copies the answers it received, in question order, and omits unanswered items. It uses each answer's original question to interpret the reply. For example, “Horror” answers a genre preference in question 2 and an avoidance in question 6. The recommendation heading reflects whether the three picks are movies or shows.
 - PR #7 also removed “Movie and TV Show Recommendations: Instructions” above the chat. The Scenario, Your Task, and Chatbot Instructions sections appear in both conditions.
 

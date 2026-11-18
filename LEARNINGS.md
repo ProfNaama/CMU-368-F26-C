@@ -5,6 +5,7 @@ here and at the monthly review. Never put links, secrets or personal data in it.
 
 ## 2026-11-18 · update-eval-prompt-status
 - **Refer to the updated single-turn and multi-turn prompt files by name when explaining a Git merge.** _Evidence: calling them “merged prompts” made it unclear whether both conditions still used separate files._
+- **Check the earlier prompt before describing an instruction as new.** _Evidence: review confirmed that the recommendation limit already existed in both conditions and that the change removed the separate cap on multi-turn questions._
 
 ## 2026-11-18 · single-turn-partial-answers
 - **Omit unanswered items from the single-turn summary and choose recommendations using the answers the participant supplied.** _Evidence: the user rejected placeholder text and asked Alex to work with the information in the reply._
