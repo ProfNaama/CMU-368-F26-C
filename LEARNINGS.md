@@ -3,6 +3,9 @@
 Short, specific, evidence-backed. Newest first. The shared system reads this file at the start of each session
 here and at the monthly review. Never put links, secrets or personal data in it.
 
+## 2026-11-18 · single-turn-partial-answers
+- **Omit unanswered items from the single-turn summary and choose recommendations using the answers the participant supplied.** _Evidence: the user rejected placeholder text and asked Alex to work with the information in the reply._
+
 ## 2026-11-18 · align-treatment-prompts
 - **Compare randomized questionnaire content by question identity, including nested items, rather than by display order.** _Evidence: the first condition check treated shuffled Likert items as a content difference. Comparing individual items confirmed that both conditions use the same questionnaires._
 
