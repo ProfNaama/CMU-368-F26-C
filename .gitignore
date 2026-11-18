@@ -1,7 +1,8 @@
 node_modules/
 .vscode/
 .DS_Store
-# evals stay local (not part of the repo), except the readable summary in evals/prompt_consistency/
+# Track the evaluation guide and round summaries; keep scripts and raw results local.
 evals/*
+!evals/README.md
 !evals/prompt_consistency/
 .venv/
