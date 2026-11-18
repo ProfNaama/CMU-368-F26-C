@@ -1,75 +1,69 @@
 # Alex evaluations: guide to the local files
 
-This is the evaluation workspace on your computer, inside `CMU-368-F26-C/evals/`. It contains the test participants, scripts, saved conversations, and reports used to compare Alex's two conversation formats. Most of this folder is deliberately excluded from GitHub.
+This is the evaluation workspace on Rico's computer, inside `CMU-368-F26-C/evals/`. It contains the test participants, scripts, saved conversations, and reports used to compare Alex's two conversation formats. Most of this folder is deliberately excluded from GitHub.
 
 **Start with [the round-by-round report](prompt_consistency/README.md)** for what changed from the baseline through Eval #16, the scores, and definitions of every score column. Open [results.csv](prompt_consistency/results.csv) for the same rounds in a spreadsheet.
 
 ## Folder structure
 
-Paths below are relative to the project root, `CMU-368-F26-C/`.
+The tree below lists the files used for the browser evaluations. Paths are relative to the project root, `CMU-368-F26-C/`, on Rico's computer.
 
 ```text
 evals/
 ├── README.md                       This guide, tracked in Git
 ├── personas.json                   12 test participants, each with 6 fixed answers
 ├── browser_eval.py                 Runs one test conversation through the website
+├── eval_versions.py                Shared single-turn / multi-turn labels and answer grouping
+├── test_browser_versions.py        Offline regression checks for format labels
 ├── run_batch.py                    Runs batches and compares their recommended titles
 ├── build_table.py                  Builds the older CSV/HTML comparison table
-├── run_evals.py                    Separate evaluator that calls the model API directly
-├── requirements.txt               OpenAI dependency for the direct API evaluator
 ├── prompt_consistency/             The part of evals/ tracked in Git
 │   ├── README.md                   Detailed history, scores, definitions, and limits
 │   └── results.csv                 One row per round: baseline and Evals #1–#16
-├── browser_results/                Saved website tests, kept locally
-│   ├── baseline/                   Original-prompt conversations
-│   ├── eval1/ ... eval16/           Conversations for each tested round
-│   ├── eval1_preflight/             Small preliminary check, separate from round scores
-│   ├── eval2_preflight/             Another preliminary check
-│   ├── summary.csv                 Older per-persona comparison table
-│   ├── summary.html                Browser-readable version of that older table
-│   └── <other files>               Standalone chats and execution logs
-└── results/                        Outputs from the separate direct API evaluator
-    └── <date_time>[_dry-run]/
-        ├── summary.txt
-        ├── trial_scores.csv
-        ├── persona_comparison.csv
-        ├── all_conversations.json
-        └── transcripts/
+├── backups/                        Original transcript archive and rename/hash receipt
+└── browser_results/                Saved website tests on Rico's computer
+    ├── baseline/                   Original-prompt conversations
+    ├── eval1/ ... eval16/           Conversations for each tested round
+    ├── eval1_preflight/             Small preliminary check, separate from round scores
+    ├── eval2_preflight/             Another preliminary check
+    ├── summary.csv                 Older per-persona comparison table
+    ├── summary.html                Browser-readable version of that older table
+    └── <other files>               Standalone chats and execution logs
 ```
 
-There is no `browser_results/eval4/`: that proposed change was undone before testing. The dated files shown under `results/` are the direct API evaluator's output format; inspect each run folder for the files actually produced. A `_dry-run` folder contains simulated replies and grades, not measured model performance.
+There is no `browser_results/eval4/`: that proposed change was undone before testing. The scored rounds used browser conversations and compared whether the same three titles were recommended in both formats, ignoring their order.
 
 ## What is on GitHub?
 
-This documentation update tracks three files inside `evals/`: this guide, `evals/prompt_consistency/README.md`, and `evals/prompt_consistency/results.csv`. The scripts, personas, full chat transcripts, and generated comparison tables remain on this computer. This is controlled by the project's `.gitignore`.
+This documentation update tracks three files inside `evals/`: this guide, `evals/prompt_consistency/README.md`, and `evals/prompt_consistency/results.csv`. The scripts, personas, full chat transcripts, and generated comparison tables remain on Rico's computer. This is controlled by the project's `.gitignore`.
 
 The summary was originally pushed to `prompt_consistency_eval/` at the project root on `main`. Commit `90ad4b1` moved it into `evals/prompt_consistency/`. The inspected `main` and `prompt-consistency` refs at `8d25ea7` both include that move. The old path is historical, not a second set of experiments.
 
-The round-by-round report contains no links to local-only transcripts: someone reading it on GitHub can understand the findings without having this computer's folders. The transcripts include study completion codes, so they remain local. A fresh clone does not include enough evaluation files to rerun these tests.
+The round-by-round report contains no links to local-only transcripts: someone reading it on GitHub can understand the findings without having the folders on Rico's computer. The transcripts include study completion codes, so they remain on Rico's computer. A fresh clone does not include enough evaluation files to rerun these tests.
 
-## The two versions and their confusing filenames
+## Conversation formats and filenames
 
-The website's prompt filenames and the browser scripts use opposite `single`/`multi` labels. Use the format descriptions below when interpreting a result.
+The prompt files, browser scripts, saved transcript filenames, and generated summary now use the same labels: `single` for all six answers at once, and `multi` for one answer at a time.
 
 | Conversation format | Website treatment group (ID) | Prompt and opening filenames | Browser script / transcript label |
 |---|---|---|---|
-| All six answers in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `multi` |
-| One answer per message across six exchanges | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `single` |
+| All six answers in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `single` |
+| One answer per message across six exchanges | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `multi` |
 
-The prompt and opening files are under `experiment_configuration/hidden_prompts_bank/` and `experiment_configuration/opening_messages_bank/`. `treatment_groups_config.csv` maps the files to the website groups. No filenames or labels were renamed in this documentation update.
+The prompt and opening files are under `experiment_configuration/hidden_prompts_bank/` and `experiment_configuration/opening_messages_bank/`. `treatment_groups_config.csv` maps the files to the website groups. The 653 saved transcript filenames were corrected using the actual opening message to identify the format. Their contents and historical scores were preserved. The original transcript archive and filename/hash receipt are under `evals/backups/` on Rico's computer. Historical execution logs retain the labels printed at the time; the readers classify transcripts from their openings, so older copies can still be read correctly.
 
-For example, `p01_light_comedy_multi_t3_20261116_213158.txt` means:
+For example, `p01_light_comedy_single_t3_20261116_213158.txt` means:
 
 | Filename part | Meaning | Unit / format |
 |---|---|---|
 | `p01_light_comedy` | Persona ID from `personas.json` | Identifier |
-| `multi` | All six answers sent together, in the browser script's terminology | Category |
+| `single` | All six answers sent together in one message | Category |
 | `t3` | Third conversation for that persona in that format | Trial number |
-| `20261116_213158` | Save timestamp generated by the machine running the script | `YYYYMMDD_HHMMSS`; filename has no time-zone marker |
+| `20261116_213158` | Save timestamp generated on Rico's computer | `YYYYMMDD_HHMMSS`; filename has no time-zone marker |
 
 ## How the browser evaluations work
 
-The historical baseline and Eval #1–#16 scores come from website conversations saved in `browser_results/`, not from `run_evals.py`'s AI judge.
+The baseline and Eval #1–#16 scores come from website conversations saved in `browser_results/` on Rico's computer. The main measure is an exact match of all three recommended titles between the two formats, ignoring title order.
 
 1. `browser_eval.py` opens the website, completes its forms with test answers, and identifies the format from Alex's opening message.
 2. It reads a persona's six answers from `personas.json`. In the all-at-once format it combines them into one numbered message; in the one-at-a-time format it sends each answer separately.
@@ -94,33 +88,10 @@ Change the label to the saved round and use `--trials 1` for a one-trial round. 
 |---|---|---|
 | `prompt_consistency/results.csv` | One evaluation round | How each prompt or settings revision scored across its completed pairs |
 | `browser_results/summary.csv` or `.html` | One persona in one format | The three picks, transcript, and shared-title count for an older standalone run |
-| `results/<run>/trial_scores.csv` | One direct API conversation | Rule checks and AI-judge grades for that separate evaluator |
-| `results/<run>/persona_comparison.csv` | One persona across direct API trials | Average title overlap, fit grades, and repeatability for that separate evaluator |
 
 `build_table.py` reads only `.txt` files directly in `browser_results/`, keeping the newest file per persona and format. It does not read nested rounds such as `eval15/`, and its filename pattern does not accept the batch `_t1_` trial tag. Its table is not a combined summary of all evaluation rounds.
 
 In that older table, `Pick 1`–`Pick 3` are title descriptions (text); `Offers 'My List'` is a yes/no text check; and `Same titles in both treatments` reports 0–3 shared titles. Offering My List does not prove the app can save anything there.
-
-## The separate direct API evaluator
-
-`run_evals.py` loads the local prompt/opening files, creates conversations directly through OpenAI, then makes additional model calls to grade fit, avoidance requests, tone, and title existence. It does not exercise the website's forms or session handling.
-
-Its settings currently differ from the app: it defaults to temperature `0.2` and sends no seed; the app code fixes temperature at `0` and sends seed `368`. Both default to model `gpt-4o` and a 1,000-token output limit, with model/token settings configurable through environment variables. Loading the same prompt files does not make these two workflows equivalent, nor prove which version is deployed.
-
-The direct evaluator's report units are:
-
-| Output field / measure | Meaning | Unit / range |
-|---|---|---|
-| Rule-check columns | Checks such as three picks, plain text, and question count | `PASS` / `FAIL` per chat in the CSV; summary counts are passed chats / checked chats |
-| `fit_score`, `tone_score` | Separate AI-judge ratings | 1–5 rating points, or `UNKNOWN` |
-| `avoid_verdict` | Whether a title violates the persona's avoidance request | `PASS`, `FAIL`, or `UNKNOWN` |
-| `any_title_not_real` | At least one title was not judged confidently real | Boolean; includes uncertainty, not proof of a fabricated title |
-| `shared_titles_between_groups_avg_out_of_3` | Mean title overlap across paired formats | Titles per pair, 0–3 |
-| `*_repeatability_out_of_3` | Mean title overlap across all trial pairs within a format | Titles per within-format comparison, 0–3 |
-| `fit_all_at_once`, `fit_one_by_one` | Mean numeric fit rating for that persona and format | 1–5 rating points; nonnumeric grades excluded |
-| `*_passed_every_rule_every_trial` | All recorded rule checks passed in every trial for that persona/format | Boolean |
-
-These overlap averages are different from the browser batch's exact-match percentage. A direct API `--dry-run` uses fake titles and fake judge grades to check the reporting pipeline; its scores are not evidence about Alex.
 
 ## What this documentation does not establish
 

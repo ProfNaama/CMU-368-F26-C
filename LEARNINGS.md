@@ -3,6 +3,9 @@
 Short, specific, evidence-backed. Newest first. The shared system reads this file at the start of each session
 here and at the monthly review. Never put links, secrets or personal data in it.
 
+## 2026-11-18 · eval-browser-docs
+- **When correcting format labels, fix generation, saved filenames, and result readers together while preserving transcript contents and scores.** _Evidence: the filename correction required changes beyond the README; regression checks and transcript hashes verified consistent labels with unchanged results._
+
 ## 2026-11-18 · eval-documentation
 - **Document local-only evaluation files separately from tracked summaries, and explain each round from its actual changes and saved scores.** _Evidence: the evaluation README was unclear about local folders; file tracking, commit diffs, and offline transcript scoring established the correct structure and round history._
 
