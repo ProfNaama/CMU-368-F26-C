@@ -1,6 +1,7 @@
 node_modules/
 .vscode/
 .DS_Store
-# evals stay local for now (not part of the repo)
-evals/
+# evals stay local (not part of the repo), except the readable summary in evals/prompt_consistency/
+evals/*
+!evals/prompt_consistency/
 .venv/

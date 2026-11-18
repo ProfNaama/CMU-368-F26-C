@@ -305,7 +305,14 @@ function saveSessionResults(req) {
         fs.appendFileSync(config.resultsFile, JSON.stringify(sessionResultObj) + "\n", { flush: true } );
     }
     
-    if (config.connectionString) {
+    // test chats from evals/browser_eval.py answer the questionnaire with "EVAL TEST";
+    // they are kept out of the real results table (their transcripts are saved in the evals folder instead)
+    const isEvalTest = JSON.stringify(sessionManager.toJsonObject().preQuestionsAnswers || "").includes("EVAL TEST");
+    if (isEvalTest) {
+        console.log("Eval test session, not saved to the database. uid: " + sessionResultObj.uid);
+    }
+
+    if (config.connectionString && !isEvalTest) {
         // use pg to insert results to the database table
         const pool = new Pool({
             connectionString: config.connectionString,

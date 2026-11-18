@@ -1,5 +1,20 @@
 # Prompt consistency evaluation
 
+## Where to find things
+| What | Where | In git? |
+|---|---|---|
+| This summary (start here) | `evals/prompt_consistency/README.md` | yes |
+| One row per test round, with scores | `evals/prompt_consistency/results.csv` (opens in Excel or Google Sheets) | yes |
+| The two prompts Alex follows | `experiment_configuration/hidden_prompts_bank/hidden_prompt_single_turn.txt` (all at once) and `hidden_prompt_multi_turn.txt` (one at a time) | yes |
+| Every test chat, word for word | `evals/browser_results/<round>/`, for example `evals/browser_results/eval15/`. Each `.txt` file is one chat. The name gives the persona, the version (`single` = one at a time, `multi` = all at once) and the trial, e.g. `p02_crime_binge_multi_t1_...txt` | no, only on this computer (each chat ends with the study's completion code) |
+| The 12 pretend participants and their answers | `evals/personas.json` | no |
+
+## Test chats and the real results table
+- Until this change, every test chat finished the study flow, so the site saved it like a real session. About 600 test sessions were saved this way, across all the rounds, probably into the real `tri_ca_results` table.
+- Every test session can be recognised because its pre-questionnaire text answers are exactly "EVAL TEST".
+- We have no database access, so these rows have not been removed. Someone with access (Naama) needs to remove them, after first listing them to check.
+- **From now on** the app does not save a session to the database when its pre-questionnaire answers contain "EVAL TEST". Real participants are saved as before. The full test chats live in `evals/browser_results/` instead.
+
 ## What we were trying to do
 Alex recommends 3 movies or TV shows in two versions that should differ only in pacing:
 
