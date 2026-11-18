@@ -58,7 +58,8 @@ async function getLLMResponse(conversation) {
         messages: conversation,
         model: config.apiModel,
         max_tokens: config.apiTokenLimit,
-        temperature: config.apiTemperature
+        temperature: config.apiTemperature,
+        seed: config.apiSeed
     });
     return chatCompletion.choices[0].message.content;
 }
