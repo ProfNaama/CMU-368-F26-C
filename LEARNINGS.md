@@ -3,6 +3,9 @@
 Short, specific, evidence-backed. Newest first. The shared system reads this file at the start of each session
 here and at the monthly review. Never put links, secrets or personal data in it.
 
+## 2026-11-18 · align-treatment-prompts
+- **Compare randomized questionnaire content by question identity, including nested items, rather than by display order.** _Evidence: the first condition check treated shuffled Likert items as a content difference. Comparing individual items confirmed that both conditions use the same questionnaires._
+
 ## 2026-11-18 · eval-history-readability
 - **Explain evaluation changes with before-and-after instructions and labeled examples, and separate untested revisions from measured scores.** _Evidence: the user requested more explicit nontechnical explanations and a clear statement that the latest revision still needs a new evaluation._
 - **Present evaluation changes as short action bullets, keep context in separate blocks, and finish with the changes still present in the current version.** _Evidence: the user approved the content but found the per-evaluation descriptions hard to read and requested a final baseline-to-current change list._

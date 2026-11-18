@@ -165,8 +165,10 @@ If you already completed the local quick start, you can keep using the same chec
 Configure three core CSV files that control your experimental design:
 
 - **[`experiment_configuration/experiment_desc.csv`](experiment_configuration/experiment_desc.csv)** - Page titles, headers, and body copy for experiment stages; some controls and UI text remain hardcoded in the templates
-- **[`experiment_configuration/treatment_groups_config.csv`](experiment_configuration/treatment_groups_config.csv)** - Treatment group assignments, hidden prompts, user preferences, and randomization settings for factorial designs
+- **[`experiment_configuration/treatment_groups_config.csv`](experiment_configuration/treatment_groups_config.csv)** - Maps each treatment group to its hidden prompt, opening message, agent settings, task instructions, and questionnaires
 - **[`experiment_configuration/questions_bank.csv`](experiment_configuration/questions_bank.csv)** - Pre/post questionnaire items, question types, randomization rules, and Likert scale configurations
+
+When a new session starts, the app draws a random session ID from 0 to 99,999. With the current two rows, an even ID selects Group 1 (single turn) and an odd ID selects Group 2 (multi turn). Each group has a 50% chance per new session. The assignment is saved in the session. Both groups use the same Alex name, avatar, task instructions, questionnaires, and six chat questions. The hidden prompts and scripted openings vary the pacing: all six questions together or one at a time.
 
 #### 3. **Set Up PostgreSQL**
 For live or public studies, use PostgreSQL for participant-code validation and completed-session storage.
