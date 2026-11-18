@@ -33,24 +33,24 @@ A pair compares the two chat formats using the same test participant and attempt
 
 | Round | What changed | Chats saved | Pairs with the same 3 titles | Match rate (%) |
 |---|---|---:|---:|---:|
-| Baseline | Alex chose three titles without a set order for weighing the answers. | 24 | 5/12 | 42 |
-| 1 | Use the same rules to choose titles in both chats. In multi-turn, ask the next question without reacting first. | 24 | 5/12 | 42 |
-| 2 | Accept replies like “idk,” favor popular titles, and lower the default setting that controls how much answers vary. | 24 | 4/12 | 33 |
-| 3 | Give each pick a job. Match the favorite, match genre and mood, then match format and available time. | 23 | 6/11 | 55 |
-| 4 | Proposed choosing from a fixed list of titles. Dropped the idea before testing. | 0 | — (not run) | — |
-| 5 | Repeat all six answers in “Got it.” Choose mainly from what fans of the favorite might watch next. Leave mood and time out of the choice. | 24 | 7/12 | 58 |
-| 6 | Pick titles that resemble the favorite in genre, story, or language. Say “Since you liked…” before the list. | 24 | 9/12 | 75 |
-| 7 | Look first for titles in the same series or by the same creators. If the person says “either,” match the favorite’s movie or TV format. | 72 | 21/36 | 58 |
-| 8 | Keep the same instructions and use settings intended to give steadier picks when the answers repeat. | 24 | 6/12 | 50 |
-| 9 | Give sequels and spin-offs priority. If there’s no favorite, look for popular Netflix original TV shows. | 24 | 7/12 | 58 |
-| 10 | Choose the third pick from other titles by the creator or director of the first pick. | 24 | 6/12 | 50 |
-| 11 | List all three titles before explaining them. Drop the special creator rule for the third pick. | 24 | 5/12 | 42 |
-| 12 | Limit all three picks to Netflix originals. Put each explanation back under its title. | 24 | 9/12 | 75 |
-| 13 | Say “Netflix original movies” or “Netflix original TV shows” before the picks. Exclude shows that first aired on a TV network. | 72 | 31/36 | 86 |
-| 14 | When two titles fit equally well, pick the older release. | 72 | 30/36 | 83 |
-| 15 | Clarify that the TV-network rule applies in any country, even if Netflix later calls the show an original. | 72 | 30/36 | 83 |
-| 16 | Keep Round 15’s choosing rules. Test the older settings for how much Alex’s picks vary, then restore the settings from Round 15. | 72 | 26/36 | 72 |
-| Current prompts | Choose from the answers given. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. | 0 | — (pending) | — |
+| Baseline | **Original instructions.** Alex summarized the answers in its own words and decided how much weight to give each answer when choosing three titles. | 24 | 5/12 | 42 |
+| 1 | **Give both chats the same rules for picking titles.** Start with the title the person enjoyed and summarize answers in question order. In multi-turn, ask the next question directly. | 24 | 5/12 | 42 |
+| 2 | **Accept “idk” and other vague replies.** Continue to the next step, favor widely watched titles among those that fit, and lower the default setting that lets Alex’s choices vary. | 24 | 4/12 | 33 |
+| 3 | **Give each pick a different job.** Pick 1 matches the favorite. Pick 2 matches genre and mood. Pick 3 fits the requested movie or TV format and available time. | 23 | 6/11 | 55 |
+| 4 | **Propose a fixed list.** Alex would pick the first three suitable titles from a prewritten list. We dropped the idea before running any chats. | 0 | — (not run) | — |
+| 5 | **Repeat all six answers, then start from the favorite.** Write the answers in “Got it,” then choose what fans of the favorite might watch next. Mood and time no longer guide the picks. | 24 | 7/12 | 58 |
+| 6 | **Look for titles that resemble the favorite.** Focus on genre, story, and country or language. Introduce the picks with “Since you liked…” so the person knows what the list is based on. | 24 | 9/12 | 75 |
+| 7 | **Look for related titles first.** Start with the same series, story world, or creators. If the person says “either,” use the favorite’s format for all three picks. | 72 | 21/36 | 58 |
+| 8 | **Try to make repeat chats give steadier picks.** Keep the same prompt. Turn down the setting that varies choices and use the same repeatability setting each time. | 24 | 6/12 | 50 |
+| 9 | **Give sequels and spin-offs priority.** Drop the special preference for titles by the same creator and leave out the favorite itself. With no favorite, look for popular Netflix original TV shows. | 24 | 7/12 | 58 |
+| 10 | **Tie the third pick to the first pick’s creator.** Look for another title by the same creator or director. If none fits, look at the second pick’s creator. | 24 | 6/12 | 50 |
+| 11 | **Show the three titles first, then explain them.** Drop the creator rule for the third pick and choose all three based on how they relate to the favorite. | 24 | 5/12 | 42 |
+| 12 | **Limit all three picks to Netflix originals.** Drop the rule that put sequels and related stories first, and put each explanation underneath its title again. | 24 | 9/12 | 75 |
+| 13 | **Name the type of picks before listing them.** Say “Netflix original movies” or “Netflix original TV shows.” Leave out shows that first aired on a TV network. | 72 | 31/36 | 86 |
+| 14 | **Pick the older release when two titles fit equally well.** The earlier rule favored whichever title more people had watched. | 72 | 30/36 | 83 |
+| 15 | **Apply the TV-network rule in every country.** A show that first aired on a TV network is left out, even if Netflix later streams it or calls it an original. | 72 | 30/36 | 83 |
+| 16 | **Test the older settings with Round 15’s prompt.** Use the website’s variation setting when available and remove the fixed repeatability setting. Restore both settings after the test. | 72 | 26/36 | 72 |
+| Current prompts | **Use the answers people actually give.** Copy only those answers into “Got it” and choose titles based on what each answer means. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. | 0 | — (pending) | — |
 
 ### What the table headers mean
 

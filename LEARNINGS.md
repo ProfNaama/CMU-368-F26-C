@@ -3,6 +3,9 @@
 Short, specific, evidence-backed. Newest first. The shared system reads this file at the start of each session
 here and at the monthly review. Never put links, secrets or personal data in it.
 
+## 2026-11-18 · clarify-eval-rounds
+- **Use the pasted table as the starting point when the user identifies it as the current text.** _Evidence: the user clarified which wording they could see and asked to preserve its level of detail._
+
 ## 2026-11-18 · simplify-eval-score-table
 - **Use short, plain-language change descriptions in the score table and put detailed explanations in the round history.** _Evidence: the user asked for an easier-to-scan description of each round._
 - **Distinguish when an evaluation rule was introduced from when it was clarified.** _Evidence: review confirmed that Round 13 first excluded shows from TV networks and Round 15 clarified the rule’s reach._
