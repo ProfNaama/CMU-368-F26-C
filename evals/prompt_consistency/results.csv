@@ -1,18 +1,18 @@
 eval,commit,change,chats_run,pairs_matched,pairs_total,match_pct,repeat_one_by_one,repeat_all_at_once,identical_replies_vs_trial1
-baseline,a98e34f,Original prompts,24,5,12,42,,,
-1,1ad375a,Shared title-choosing rules; one-by-one version asks only the bare questions,24,5,12,42,,,
-2,a5cc5bb,Vague answers count; most-famous tie-break; default temperature 0,24,4,12,33,,,
-3,5eaf974,One clear job per pick,23,6,11,55,,,
-4,15f29a8,Fixed title catalog (rejected and undone in f21a872; never run),0,,,,,,
-5,ac2be61,"Fixed ""Got it"" restatement line; the title they enjoyed is the main guide",24,7,12,58,,,
-6,14bb779,"One written guide line before the picks (""most like the title they enjoyed"")",24,9,12,75,,,
-7,e0e938c,"Fixed pick order; ""either"" means the format of the enjoyed title",72,21,36,58,18/24,18/24,2/48
-8,fc627c3,Temperature fixed at 0 and fixed seed 368 (code change in config.js and app.js),24,6,12,50,,,
-9,b9c3f78,Story-world-first order; narrower default; own-title check,24,7,12,58,,,
-10,ff8a6ad,Third pick by the creator of the first pick,24,6,12,50,,,
-11,3e9b45e,List the three titles together before any descriptions,24,5,12,42,,,
-12,0319a43,Simplest rules plus Netflix originals only,24,9,12,75,,,
-13,5b8de24,Format and Netflix-original written into the guide line,72,31,36,86,22/24,20/24,2/48
-14,6e0e206,Tie-break by earlier release date,72,30,36,83,22/24,23/24,6/48
-15,4f50c36,Clearer definition of a Netflix original (Breaking Bad / Money Heist examples),72,30,36,83,21/24,21/24,0/48
-16,87e7f0c,Settings test: original temperature setting and no seed; Eval 15 prompts unchanged (then undone),72,26,36,72,20/24,20/24,0/48
+baseline,a98e34f,Original prompts: free-form preference summary and three recommendations; the one-at-a-time version could briefly react before each next question. No shared title-selection procedure.,24,5,12,42,,,
+1,1ad375a,"Add shared selection rules: use the recent favorite as the strongest taste clue, exclude already-seen titles, respect format/time/avoidances, and prefer popular Netflix US titles. Summarize all six answers in a fixed order. Remove reactions between questions in the one-at-a-time format.",24,5,12,42,,,
+2,a5cc5bb,"Accept vague answers such as idk or whatever without re-asking; choose the three most-famous/most-watched fitting titles. Change the temperature fallback from 0.2 to 0, while retaining an OPENAI_TEMPERATURE override; actual hosted override was not verified.",24,4,12,33,,,
+3,5eaf974,Give each recommendation a separate role: pick 1 resembles the recent favorite; pick 2 matches genre and mood; pick 3 matches format and available time. Use popularity to break ties. Only 23 chats and 11 complete cross-format pairs were saved.,23,6,11,55,,,
+4,15f29a8,"Propose a fixed ranked title catalog: select a genre list, filter format/seen titles/avoidance tags, then take its first three eligible entries, ignoring mood and time. Rejected and reverted in f21a872 before testing; no score.",0,,,,,,
+5,ac2be61,"Replace the per-pick roles with one main guide: the recent favorite and titles its fans watch next. Copy all six answers into an exact Got it line and choose from that text; retain format/avoidance filters, but ignore mood/time. If no favorite, use genre then general popularity.",24,7,12,58,,,
+6,14bb779,"Change the selection guide from what fans watch next to titles similar in genre, story, and country/language. Add a fixed Since you liked guide line before the picks and require exact capitalization in the Got it copy. Keep format/avoidance checks and popularity fallback when no favorite is given.",24,9,12,75,,,
+7,e0e938c,"Prioritize titles from the same series, story world, or creators before genre/story matches, with popularity as tie-break. Resolve either or unclear format to the format of the recent favorite. Other Eval 6 instructions remain.",72,21,36,58,18/24,18/24,2/48
+8,fc627c3,"Keep Eval 7 prompts unchanged. Force application temperature to 0 regardless of OPENAI_TEMPERATURE and add seed 368 to model requests. This is an app.js/config.js settings change, not a prompt revision.",24,6,12,50,,,
+9,b9c3f78,"Narrow the first-priority choices to sequels/prequels/spin-offs, removing the same-creator shortcut. Add a final check against recommending the recent favorite. When no favorite is given, use popular Netflix original series in the first genre, or overall if no genre is given.",24,7,12,58,,,
+10,ff8a6ad,"Choose picks 1 and 2 by similarity; make pick 3 another title by the creator/director of pick 1, falling back to the creator/director of pick 2. Also exclude specials/documentaries/behind-the-scenes titles about the recent favorite.",24,6,12,50,,,
+11,3e9b45e,"Remove the creator-based third-pick rule and return all three picks to similarity/story-world selection. List all three title lines first, followed by separate unnumbered descriptions, so explanations do not interrupt the title list.",24,5,12,42,,,
+12,0319a43,"Restrict all recommendations to Netflix originals and simplify selection to similarity plus a popularity tie-break, removing the story-world priority and explicit final self-check. Restore a description immediately under each title. Retain favorite/related-special exclusions and format/avoidance filters.",24,9,12,75,,,
+13,5b8de24,"Write Netflix original plus the selected movies/TV shows format into the fixed guide line. Exclude shows first aired on a TV network. Replace the no-favorite fallback with the top three entries from the official all-time Most Popular English TV list, as a prompt instruction rather than a live lookup.",72,31,36,86,22/24,20/24,2/48
+14,6e0e206,"Keep Eval 13 rules, but replace the popularity tie-break between equally similar Netflix originals with the earlier release date. No other prompt or settings change in this round.",72,30,36,83,22/24,23/24,6/48
+15,4f50c36,Clarify that a show first aired on a TV network in any country is excluded even if Netflix later streams or labels it an original; add Breaking Bad and Money Heist as examples. Retain Eval 14 earlier-release tie-break and temperature 0/seed 368.,72,30,36,83,21/24,21/24,0/48
+16,87e7f0c,"Keep Eval 15 prompts unchanged. Remove seed and restore OPENAI_TEMPERATURE with fallback 0.2; hosted override value was not verified. After testing, revert these settings in 04ac259 to temperature 0 and seed 368.",72,26,36,72,20/24,20/24,0/48
