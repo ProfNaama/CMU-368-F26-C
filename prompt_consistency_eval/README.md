@@ -45,7 +45,7 @@ Every change below was made in both prompts, except Eval #8 and #16, which only 
 | 13 | Format and "Netflix original" written into the line before the picks | **31/36 (86%)** full, best |
 | 14 | Ties go to the earlier release | **30/36 (83%)** full |
 | 15 | Clearer definition of a Netflix original | **30/36 (83%)** full |
-| 16 | Settings test: original temperature, no seed, Eval #15 prompts unchanged | running, see below |
+| 16 | Settings test: original temperature, no seed, Eval #15 prompts unchanged (then undone) | **26/36 (72%)** full |
 
 ## What helped and what didn't
 - **Helped:**
@@ -70,8 +70,22 @@ The saved chats suggest this did not make Alex more repeatable. When the same pe
 
 GPT-4o at temperature 0 is still not fully repeatable, and OpenAI only follows the seed on a "best effort" basis. Because the prompts also changed between those runs, **Eval #16** puts back the original setting and removes the seed with the prompts unchanged. Comparing it with Eval #15 shows whether the settings are worth keeping.
 
+**Eval #16 result: the settings help, so they were put back.**
+
+| | Eval #15 (temp 0 + seed) | Eval #16 (original settings) |
+|---|---|---|
+| Matching pairs | 30/36 (83%) | 26/36 (72%) |
+| Repeatability, one at a time | 21/24 | 20/24 |
+| Repeatability, all at once | 21/24 | 20/24 |
+| Word overlap with trial 1 | 80% | 74% |
+| Word-for-word identical replies | 0/48 | 0/48 |
+
+- Without the settings, the third title wandered more. The Korean-drama persona got four different third picks: *Our Beloved Summer*, *Nevertheless*, *My First First Love* and *Romance Is a Bonus Book*.
+- The settings don't make replies identical. They make the picks steadier.
+- This comes from one 72-chat run per setting, so part of the 4-pair gap may be chance. Still, every measure points the same way.
+
 ## Current state
-- The live prompts are Eval #15. Eval #13 scored highest, 86%.
+- The live prompts are Eval #15, with temperature 0 and seed 368 restored after Eval #16. Eval #13 scored highest, 86%.
 - The 90% goal was not reached in 15 prompt changes.
 - **Remaining option, not tried:** the app could send both versions the six answers in exactly the same format for the recommendation step.
 

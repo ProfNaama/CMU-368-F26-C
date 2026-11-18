@@ -15,4 +15,4 @@ baseline,a98e34f,Original prompts,24,5,12,42,,,
 13,5b8de24,Format and Netflix-original written into the guide line,72,31,36,86,22/24,20/24,2/48
 14,6e0e206,Tie-break by earlier release date,72,30,36,83,22/24,23/24,6/48
 15,4f50c36,Clearer definition of a Netflix original (Breaking Bad / Money Heist examples),72,30,36,83,21/24,21/24,0/48
-16,87e7f0c,Settings test: original temperature setting and no seed; Eval 15 prompts unchanged,72,,36,,,,
+16,87e7f0c,Settings test: original temperature setting and no seed; Eval 15 prompts unchanged (then undone),72,26,36,72,20/24,20/24,0/48
