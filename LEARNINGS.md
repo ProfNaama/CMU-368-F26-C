@@ -3,6 +3,9 @@
 Short, specific, evidence-backed. Newest first. The shared system reads this file at the start of each session
 here and at the monthly review. Never put links, secrets or personal data in it.
 
+## 2026-11-18 · simplify-eval-score-table
+- **Use short, plain-language change descriptions in the score table and put detailed explanations in the round history.** _Evidence: the user asked for an easier-to-scan description of each round._
+
 ## 2026-11-18 · update-eval-prompt-status
 - **Refer to the updated single-turn and multi-turn prompt files by name when explaining a Git merge.** _Evidence: calling them “merged prompts” made it unclear whether both conditions still used separate files._
 - **Check the earlier prompt before describing an instruction as new.** _Evidence: review confirmed that the recommendation limit already existed in both conditions and that the change removed the separate cap on multi-turn questions._
