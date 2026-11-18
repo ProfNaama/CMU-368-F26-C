@@ -45,10 +45,10 @@ A pair compares the two chat formats using the same test participant and attempt
 | 9 | Give sequels and spin-offs priority. If there’s no favorite, look for popular Netflix original TV shows. | 24 | 7/12 | 58 |
 | 10 | Choose the third pick from other titles by the creator or director of the first pick. | 24 | 6/12 | 50 |
 | 11 | List all three titles before explaining them. Drop the special creator rule for the third pick. | 24 | 5/12 | 42 |
-| 12 | Recommend only Netflix originals that resemble the favorite. Put each explanation back under its title. | 24 | 9/12 | 75 |
-| 13 | Tell the person up front they’re getting “3 Netflix original movies” or “3 Netflix original TV shows.” | 72 | 31/36 | 86 |
+| 12 | Limit all three picks to Netflix originals. Put each explanation back under its title. | 24 | 9/12 | 75 |
+| 13 | Say “Netflix original movies” or “Netflix original TV shows” before the picks. Exclude shows that first aired on a TV network. | 72 | 31/36 | 86 |
 | 14 | When two titles fit equally well, pick the older release. | 72 | 30/36 | 83 |
-| 15 | Exclude shows that first aired on a TV network, even if Netflix later calls them originals. | 72 | 30/36 | 83 |
+| 15 | Clarify that the TV-network rule applies in any country, even if Netflix later calls the show an original. | 72 | 30/36 | 83 |
 | 16 | Keep Round 15’s choosing rules. Test the older settings for how much Alex’s picks vary, then restore the settings from Round 15. | 72 | 26/36 | 72 |
 | Current prompts | Choose from the answers given. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. | 0 | — (pending) | — |
 

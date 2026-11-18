@@ -5,6 +5,7 @@ here and at the monthly review. Never put links, secrets or personal data in it.
 
 ## 2026-11-18 · simplify-eval-score-table
 - **Use short, plain-language change descriptions in the score table and put detailed explanations in the round history.** _Evidence: the user asked for an easier-to-scan description of each round._
+- **Distinguish when an evaluation rule was introduced from when it was clarified.** _Evidence: review confirmed that Round 13 first excluded shows from TV networks and Round 15 clarified the rule’s reach._
 
 ## 2026-11-18 · update-eval-prompt-status
 - **Refer to the updated single-turn and multi-turn prompt files by name when explaining a Git merge.** _Evidence: calling them “merged prompts” made it unclear whether both conditions still used separate files._
