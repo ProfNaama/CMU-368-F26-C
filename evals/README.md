@@ -2,11 +2,11 @@
 
 This is the evaluation workspace on Rico's computer, inside `CMU-368-F26-C/evals/`. It contains the test participants, scripts, saved conversations, and reports used to compare Alex's two conversation formats. Most of this folder is deliberately excluded from GitHub.
 
-**Latest prompt change: a NEW evaluation is still pending.** Alex is now instructed to use all six answers when choosing titles, rather than mainly choosing from the recently enjoyed title. Earlier rounds already sent Alex all six answers; the new change is how those answers are used. None of the historical match scores measures this latest version.
+**A new evaluation of the updated single-turn and multi-turn prompts is pending.** Each condition still uses its own prompt file. Both prompts tell Alex to use the answers participants provide and keep each answer tied to its question. Single-turn can recommend after a partial reply. Multi-turn waits for all six answers. The “Got it” line copies the answers given in question order. Both conditions start with the same first question, and the shared instructions above the chat now start at “Scenario.”
 
 **Start with [the round-by-round report](prompt_consistency/README.md)** for plain-language before-and-after explanations of the baseline through Eval #16, their scores, and the latest change awaiting a new evaluation. Open [results.csv](prompt_consistency/results.csv) for the same rounds in a spreadsheet.
 
-For the current outcome of all the revisions, see the [final list of changes still in place today](prompt_consistency/README.md#changes-still-in-place-today-compared-with-the-baseline). It also separates ideas that were tried and removed, and highlights the new evaluation still needed for the latest all-six-answer instructions.
+For the current outcome of all the revisions, see the [final list of changes still in place today](prompt_consistency/README.md#changes-still-in-place-today-compared-with-the-baseline).
 
 ## Folder structure
 
@@ -28,6 +28,7 @@ evals/
 └── browser_results/                Saved website tests on Rico's computer
     ├── baseline/                   Original-prompt conversations
     ├── eval1/ ... eval16/           Conversations for each tested round
+    ├── eval17/                     Earlier attempt with no saved conversations
     ├── eval1_preflight/             Small preliminary check, separate from round scores
     ├── eval2_preflight/             Another preliminary check
     ├── summary.csv                 Older per-persona comparison table
@@ -51,8 +52,8 @@ The prompt files, browser scripts, saved transcript filenames, and generated sum
 
 | Conversation format | Website treatment group (ID) | Prompt and opening filenames | Browser script / transcript label |
 |---|---|---|---|
-| All six answers in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `single` |
-| One answer per message across six exchanges | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `multi` |
+| All six questions in one message | 1 | `hidden_prompt_single_turn.txt`, `opening_single_turn.txt` | `single` |
+| One question per message | 2 | `hidden_prompt_multi_turn.txt`, `opening_multi_turn.txt` | `multi` |
 
 The prompt and opening files are under `experiment_configuration/hidden_prompts_bank/` and `experiment_configuration/opening_messages_bank/`. `treatment_groups_config.csv` maps the files to the website groups. The 653 saved transcript filenames were corrected using the actual opening message to identify the format. Their contents and historical scores were preserved. The original transcript archive and filename/hash receipt are under `evals/backups/` on Rico's computer. Historical execution logs retain the labels printed at the time; the readers classify transcripts from their openings, so older copies can still be read correctly.
 
@@ -67,7 +68,7 @@ For example, `p01_light_comedy_single_t3_20261116_213158.txt` means:
 
 ## How the browser evaluations work
 
-The baseline and Eval #1–#16 scores come from website conversations saved in `browser_results/` on Rico's computer. The main measure is an exact match of all three recommended titles between the two formats, ignoring title order.
+The baseline and Eval #1–#16 scores come from website conversations saved in `browser_results/` on Rico's computer. The main measure is an exact match of all three recommended titles between the two formats, ignoring title order. Local Eval #17 logs record an earlier attempt that ended without saved conversations. They predate the prompt updates in PRs #6 and #7 and provide no score.
 
 1. `browser_eval.py` opens the website, completes its forms with test answers, and identifies the format from Alex's opening message.
 2. It reads a persona's six answers from `personas.json`. In the all-at-once format it combines them into one numbered message; in the one-at-a-time format it sends each answer separately.
@@ -90,7 +91,7 @@ Change the label to the saved round and use `--trials 1` for a one-trial round. 
 
 | File | What one row represents | What it tells you |
 |---|---|---|
-| `prompt_consistency/results.csv` | One historical evaluation round, plus a final pending-change row | Recorded match scores; the latest all-six-answer change has no score yet |
+| `prompt_consistency/results.csv` | One historical evaluation round, plus a final row for the updated single-turn and multi-turn prompts | Recorded match scores and the pending evaluation status for the current version |
 | `browser_results/summary.csv` or `.html` | One persona in one format | The three picks, transcript, and shared-title count for an older standalone run |
 
 `build_table.py` reads only `.txt` files directly in `browser_results/`, keeping the newest file per persona and format. It does not read nested rounds such as `eval15/`, and its filename pattern does not accept the batch `_t1_` trial tag. Its table is not a combined summary of all evaluation rounds.

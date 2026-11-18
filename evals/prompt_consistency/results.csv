@@ -246,12 +246,14 @@ Compare the request settings while holding the instructions constant, so this ro
 
 EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
 The person sees the same questions and Alex reads the same choosing rules as in Eval #15. Only the settings intended to influence variation are changed; afterwards, the earlier settings are put back.",72,26,36,72,20/24,20/24,0/48
-latest_not_evaluated,3038eb2,"NOT YET EVALUATED
+latest_not_evaluated,3a446a6,"UPDATED PROMPTS AWAITING EVALUATION
 
 WHAT CHANGED
-- Use all six answers when choosing: requested format and things to avoid first, then similarity to the favorite, then genres and mood, then available time.
+- Use the answers participants provide: requested format and things to avoid first, then similarity to the favorite, then genres and mood, then available time.
 - If no favorite is given, choose using genres and mood.
 - Remove the Netflix-original-only restriction. Keep the requirement to recommend real, released titles believed available on Netflix US.
 - Introduce the picks as “Based on your answers,” rather than “Since you liked [title].”.
-- Keep the same six questions. What changes is how their answers guide the picks.
-- NEW EVALUATION STILL NEEDED: this latest combination of instructions has not had its own evaluation. Earlier scores do not apply to it.",0,,,,,,
+- PR #6: Use the same first question and six-question wording in both conditions. Retain the recommendation limit of under 180 words and remove the separate cap on multi-turn question messages. Single-turn can recommend after a partial reply. Multi-turn asks one unanswered question at a time and waits for all six answers.
+- PR #7: In both conditions, copy only supplied answers into “Got it” in question order. Use the original question each answer belongs to when choosing titles. Make the heading match the selected movie or show format.
+- PR #7: Remove the extra heading above the shared chat instructions.
+- Evaluation pending for this updated version. Earlier Eval #17 attempts saved no transcripts and predate these PRs.",0,,,,,,

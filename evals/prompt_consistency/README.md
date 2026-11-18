@@ -1,8 +1,8 @@
 # Alex prompt consistency: changes and scores by evaluation round
 
-This report explains the saved browser evaluations from the baseline through Eval #16, followed by the latest prompt change awaiting a new evaluation. It is self-contained: you can read the changes, scores, and definitions here without having the local transcripts or Python scripts.
+This report covers the saved browser evaluations from the baseline through Eval #16 and the prompt changes merged since then.
 
-**Pending: we have yet to run a NEW evaluation of the latest prompt that uses all six answers to choose the recommendations. The scores below belong to earlier instructions and do not measure this latest version.**
+**A new evaluation of the updated single-turn and multi-turn prompts is pending.** The current prompts use the answers participants provide to guide recommendations. Single-turn can recommend after a partial reply, and multi-turn waits for all six answers. The last scored round was Eval #16.
 
 **Best recorded full run:** Eval #13 matched all three titles in **31 of 36 pairs (86%, rounded)**. The target was at least 90%; with 36 pairs, that requires at least 33 matches. No recorded round reached that target. These are consistency scores, not recommendation-quality or participant-satisfaction scores.
 
@@ -50,7 +50,7 @@ The comparison extracts numbered picks from Alex's final message and normalizes 
 | 14 | When two titles fit equally well, choose the earlier release | 72 | 30/36 | 83 |
 | 15 | Clarify which shows are excluded under the Netflix-original rule | 72 | 30/36 | 83 |
 | 16 | Keep Eval #15 instructions; try the older variation settings, then restore them | 72 | 26/36 | 72 |
-| Latest change — not evaluated | Use all six answers when choosing; remove the originals-only restriction | 0 | — (not run) | — |
+| Updated prompts awaiting evaluation | Use supplied answers in context, align question wording, and simplify the task instructions | 0 | — (pending) | — |
 
 ### What the table headers mean
 
@@ -82,7 +82,7 @@ For **identical final replies**, make those same comparisons across both formats
 
 ### CSV column dictionary
 
-The original machine-readable headers remain unchanged. A blank numeric cell means not measured or not applicable. Eval #4 was not run. The `latest_not_evaluated` row records the latest prompt change awaiting a new evaluation: 0 evaluated chats and no pair counts or match percentage.
+The original machine-readable headers remain unchanged. A blank numeric cell means not measured or not applicable. Eval #4 was not run. The `latest_not_evaluated` row points to the updated version at `3a446a6`, with zero evaluated chats and blank score fields.
 
 | CSV header | Meaning | Unit / format |
 |---|---|---|
@@ -405,15 +405,13 @@ Rounds #1–#15 were recorded on November 16, 2026; #16 on November 17, 2026. Th
 
 **Example (illustrative):** The person sees the same questions and Alex reads the same choosing rules as in Eval #15. Only the settings intended to influence variation are changed; afterwards, the earlier settings are put back.
 
-## Latest change — use all six answers to choose the picks (`3038eb2`)
-
-**We have yet to do a NEW evaluation with this last change about including all six questions. There is no match score for this version yet.**
+## Prompt changes since Eval #16
 
 ### What is different from the tested versions?
 
 Previously, Alex already saw the six answers, and later versions copied all six into the “Got it” line. However, the selection instructions mainly said to choose titles like the movie or show the person enjoyed. Mood and available time were not independent reasons to choose a title in those later tested versions. Format and things to avoid still acted as requirements.
 
-The latest instructions tell Alex to use **all six answers**, with this order of importance:
+Commit `3038eb2` added an order of importance for the six answers. The current instructions retain that order and apply it to the answers the participant provided.
 
 | Priority | Answer or answers used | What Alex is instructed to do in everyday terms |
 |---|---|---|
@@ -426,15 +424,19 @@ The favorite therefore still has more weight than genre/mood and time; the chang
 
 **Illustrative example:** Someone enjoyed a long crime series, but today asks for a movie, says they want something light, has about 90 minutes, and wants to avoid violence. The new instructions say to respect the movie/no-violence requirements, use the favorite as one clue, and also consider today’s mood, genres, and time. They no longer say to choose only from titles similar to the crime series. This describes what we want Alex to do; we have not yet evaluated whether it follows those priorities consistently.
 
-### Other changes in the same revision
+### What else changed
 
 - Remove the requirement that every title be a Netflix original. Titles should still be real, released, and believed available on Netflix US; there is no live catalog lookup.
 - Replace “Since you liked [title], here are 3 Netflix original…” with “Based on your answers, here are 3 [movies or TV shows] for you:”.
-- Keep the six questions, the copied “Got it” line, three recommendations, and the two conversation formats. The change is how the answers guide the choices, not a new set of questions.
+- **PR #6 (`7952b2b`)** matched the exact first question in both opening messages and kept the six questions in the same order. It retained the recommendation limit of under 180 words in both conditions and removed the separate cap on multi-turn question messages. It clarified that single-turn can recommend after any answer and multi-turn asks the next unanswered question until all six are answered.
+- **PR #7 (`3a446a6`)** gave both prompts the same “Got it” and recommendation rules. Alex copies the answers it received, in question order, and omits unanswered items. It uses each answer's original question to interpret the reply. For example, “Horror” answers a genre preference in question 2 and an avoidance in question 6. The recommendation heading reflects whether the three picks are movies or shows.
+- PR #7 also removed “Movie and TV Show Recommendations: Instructions” above the chat. The Scenario, Your Task, and Chatbot Instructions sections appear in both conditions.
+
+**Single-turn example:** If someone replies “A comedy movie,” Alex writes “Got it: A comedy movie” and recommends three titles using that preference. In multi-turn, a reply like “not sure” counts as an answer, and Alex continues until every question has an answer.
 
 ### Evaluation status
 
-**Pending — a new evaluation is still needed.** The last completed round is Eval #16, which tested software settings with the older Eval #15 prompts. Its 26/36 score, Eval #15’s 30/36, and Eval #13’s 31/36 do not apply to the latest all-six-answer instructions. The CSV’s `latest_not_evaluated` row has blank score fields for this reason. No new evaluation conversations were run while writing this explanation. The repository instructions are verified here; the current deployed website was not independently inspected.
+**The updated single-turn and multi-turn prompts still need their own evaluation.** The last completed round is Eval #16, which scored 26/36 using the older Eval #15 prompts with different request settings. Earlier local Eval #17 attempts predate PRs #6 and #7. The first pass reported 0 of 72 completed chats, and the second log contains timeouts with no saved transcripts. There were zero pairs to score. The CSV leaves match and repeatability fields blank for the updated version at `3a446a6`. The repository prompts were checked locally, and the deployed version was not verified.
 
 ## What the results support, and their limits
 
@@ -466,13 +468,15 @@ This is the final list of changes that remain in the latest prompt files. It doe
 
 1. **Ask only the next question in the one-at-a-time conversation.** Remove the brief reactions, thanks, and comments that were allowed in the baseline. Added in Eval #1.
 2. **Accept short or vague answers and continue.** Explicitly treat “idk,” “anything,” “whatever,” and “no” as answers rather than repeatedly asking the same question. Made explicit in Eval #2.
-3. **Copy all six answers before choosing.** Write the exact answers, in question order, in the “Got it” line, including their capitalization. Use that written summary as the basis for choosing. Added in Evals #5–#6.
-4. **Use one explicit priority order for all six answers.** First honor the requested movie/show format and things to avoid; then consider the enjoyed title; then genres and current mood; then available time. This order is in the latest change and has not had its own new evaluation.
+3. **Copy the answers participants actually gave.** Preserve their wording and capitalization in question order. PR #7 removed empty slots from the “Got it” line and made selection depend on the original question each answer belongs to.
+4. **Apply one priority order to the supplied answers.** First honor the requested format and things to avoid, then consider the enjoyed title, genres and mood, and available time. Commit `3038eb2` introduced those priorities. PR #7 made the original answer context explicit.
 5. **Resolve “either” and missing answers consistently.** If the person does not choose movies or shows, use the enjoyed title’s format; if there is no enjoyed title either, use TV shows. If no favorite is named, choose using genres and mood. The format rule began in Eval #7 and was expanded in the latest change.
 6. **Do not recommend the favorite back to the person.** Also exclude specials, documentaries, and behind-the-scenes programs about it. Introduced in Eval #1 and expanded in Eval #10.
 7. **Use clear rules when two titles fit equally well.** Prefer the better-known title; if still equal, prefer the earlier release. The earlier-release rule was introduced in Eval #14; the current two-step order comes from the latest change.
-8. **Introduce the list as based on the answers.** Use “Based on your answers, here are 3 [movies or TV shows] for you:” instead of the later tested wording that focused on the favorite alone. This introduction is part of the latest, unevaluated change.
+8. **Introduce the list as based on the answers.** Use “Based on your answers, here are 3 [movies or TV shows] for you:” and name the format of the selected titles.
 9. **Keep the reduced-variation software settings.** The current code always sends temperature 0 and seed 368. These settings are intended to make choices steadier, but do not guarantee identical replies. Added in Eval #8, temporarily removed for Eval #16, then restored.
+10. **Align the opening and when each condition recommends.** Both versions use the same first question and a recommendation limit of under 180 words. Single-turn asks all six questions together and can recommend from a partial reply. Multi-turn asks one unanswered question at a time and recommends once all six are answered.
+11. **Start the shared chat instructions at “Scenario.”** PR #7 removed the extra title above the instructions.
 
 ### Tried along the way, but not kept in today’s instructions
 
@@ -485,4 +489,4 @@ This is the final list of changes that remain in the latest prompt files. It doe
 
 ### The latest version still needs its own new evaluation
 
-**The same six questions were used in the earlier evaluations. What has NOT been tested in its own new evaluation is the latest version that tells Alex how to use all six answers together to choose the recommendations.** The earlier 31/36, 30/36, and 26/36 results belong to older instructions. They cannot be presented as scores for the version we have today. A NEW evaluation of this latest version is still pending; no new evaluation was run while editing this documentation.
+**The updated version at `3a446a6` still needs its own evaluation.** A new run with the existing personas would measure title agreement when all six answers are supplied. Testing how single-turn responds to partial replies requires test cases that omit some answers. All reported scores come from earlier rounds.
