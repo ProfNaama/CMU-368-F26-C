@@ -1,18 +1,257 @@
 eval,commit,change,chats_run,pairs_matched,pairs_total,match_pct,repeat_one_by_one,repeat_all_at_once,identical_replies_vs_trial1
-baseline,a98e34f,Original prompts: free-form preference summary and three recommendations; the one-at-a-time version could briefly react before each next question. No shared title-selection procedure.,24,5,12,42,,,
-1,1ad375a,"Add shared selection rules: use the recent favorite as the strongest taste clue, exclude already-seen titles, respect format/time/avoidances, and prefer popular Netflix US titles. Summarize all six answers in a fixed order. Remove reactions between questions in the one-at-a-time format.",24,5,12,42,,,
-2,a5cc5bb,"Accept vague answers such as idk or whatever without re-asking; choose the three most-famous/most-watched fitting titles. Change the temperature fallback from 0.2 to 0, while retaining an OPENAI_TEMPERATURE override; actual hosted override was not verified.",24,4,12,33,,,
-3,5eaf974,Give each recommendation a separate role: pick 1 resembles the recent favorite; pick 2 matches genre and mood; pick 3 matches format and available time. Use popularity to break ties. Only 23 chats and 11 complete cross-format pairs were saved.,23,6,11,55,,,
-4,15f29a8,"Propose a fixed ranked title catalog: select a genre list, filter format/seen titles/avoidance tags, then take its first three eligible entries, ignoring mood and time. Rejected and reverted in f21a872 before testing; no score.",0,,,,,,
-5,ac2be61,"Replace the per-pick roles with one main guide: the recent favorite and titles its fans watch next. Copy all six answers into an exact Got it line and choose from that text; retain format/avoidance filters, but ignore mood/time. If no favorite, use genre then general popularity.",24,7,12,58,,,
-6,14bb779,"Change the selection guide from what fans watch next to titles similar in genre, story, and country/language. Add a fixed Since you liked guide line before the picks and require exact capitalization in the Got it copy. Keep format/avoidance checks and popularity fallback when no favorite is given.",24,9,12,75,,,
-7,e0e938c,"Prioritize titles from the same series, story world, or creators before genre/story matches, with popularity as tie-break. Resolve either or unclear format to the format of the recent favorite. Other Eval 6 instructions remain.",72,21,36,58,18/24,18/24,2/48
-8,fc627c3,"Keep Eval 7 prompts unchanged. Force application temperature to 0 regardless of OPENAI_TEMPERATURE and add seed 368 to model requests. This is an app.js/config.js settings change, not a prompt revision.",24,6,12,50,,,
-9,b9c3f78,"Narrow the first-priority choices to sequels/prequels/spin-offs, removing the same-creator shortcut. Add a final check against recommending the recent favorite. When no favorite is given, use popular Netflix original series in the first genre, or overall if no genre is given.",24,7,12,58,,,
-10,ff8a6ad,"Choose picks 1 and 2 by similarity; make pick 3 another title by the creator/director of pick 1, falling back to the creator/director of pick 2. Also exclude specials/documentaries/behind-the-scenes titles about the recent favorite.",24,6,12,50,,,
-11,3e9b45e,"Remove the creator-based third-pick rule and return all three picks to similarity/story-world selection. List all three title lines first, followed by separate unnumbered descriptions, so explanations do not interrupt the title list.",24,5,12,42,,,
-12,0319a43,"Restrict all recommendations to Netflix originals and simplify selection to similarity plus a popularity tie-break, removing the story-world priority and explicit final self-check. Restore a description immediately under each title. Retain favorite/related-special exclusions and format/avoidance filters.",24,9,12,75,,,
-13,5b8de24,"Write Netflix original plus the selected movies/TV shows format into the fixed guide line. Exclude shows first aired on a TV network. Replace the no-favorite fallback with the top three entries from the official all-time Most Popular English TV list, as a prompt instruction rather than a live lookup.",72,31,36,86,22/24,20/24,2/48
-14,6e0e206,"Keep Eval 13 rules, but replace the popularity tie-break between equally similar Netflix originals with the earlier release date. No other prompt or settings change in this round.",72,30,36,83,22/24,23/24,6/48
-15,4f50c36,Clarify that a show first aired on a TV network in any country is excluded even if Netflix later streams or labels it an original; add Breaking Bad and Money Heist as examples. Retain Eval 14 earlier-release tie-break and temperature 0/seed 368.,72,30,36,83,21/24,21/24,0/48
-16,87e7f0c,"Keep Eval 15 prompts unchanged. Remove seed and restore OPENAI_TEMPERATURE with fallback 0.2; hosted override value was not verified. After testing, revert these settings in 04ac259 to temperature 0 and seed 368.",72,26,36,72,20/24,20/24,0/48
+baseline,a98e34f,"WHAT CHANGED
+- Ask the six questions and summarize the answers in Alex’s own words.
+- Choose three titles believed to be available on Netflix US.
+- Let Alex decide how to balance the preferences; there is no shared step-by-step choosing method.
+- Allow a brief reaction before each next question in the one-at-a-time format.
+
+BEFORE
+This was the starting version, before the numbered changes.
+
+WHY WE TRIED IT
+Establish how often the two formats naturally agreed before trying to make their choices more consistent.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+Two people giving the same answers could receive two different sets of three recommendations because Alex was free to decide how to balance their preferences.",24,5,12,42,,,
+1,1ad375a,"WHAT CHANGED
+- Use the recently enjoyed title as the strongest clue to taste, including its genre, style, country, or language.
+- Respect the requested movie/show format, available time, and things the person wants to avoid.
+- Exclude titles the person has already seen and prefer widely known choices.
+- Mention all six answers in the same question order in the summary.
+- In the one-at-a-time format, ask only the next question. Remove reactions and thanks between answers.
+
+BEFORE
+The starting version described the task but left Alex considerable freedom over how to choose the three titles.
+
+WHY WE TRIED IT
+Reduce differences caused by either version inventing its own choosing method or adding extra conversational comments.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+If the person enjoyed a Korean drama, both versions should consider similar Korean dramas. After a genre answer, the one-at-a-time version should ask the mood question directly, without an extra reaction.",24,5,12,42,,,
+2,a5cc5bb,"WHAT CHANGED
+- Accept “idk,” “anything,” “whatever,” and “no” as answers. Continue instead of asking the question again.
+- Among suitable titles, prefer the three most famous or most widely watched.
+- Change the usual temperature setting from 0.2 to 0 to try to reduce variation.
+- A separate website setting could still replace that value. The actual live value was not checked.
+
+BEFORE
+Vague answers could still lead to inconsistent handling, and the popularity instruction only said to prefer popular titles.
+
+WHY WE TRIED IT
+Keep both conversations moving through the same questions and give Alex a clearer way to choose between similar options.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+“Anything” counts as an answer. If several titles fit equally well, Alex should favor the ones it believes more people have watched, rather than choosing freely.",24,4,12,33,,,
+3,5eaf974,"WHAT CHANGED
+- Pick 1: choose the closest match to the recently enjoyed title.
+- Pick 2: choose a popular title that matches the preferred genre and current mood.
+- Pick 3: choose a different title that fits the requested movie/show format and available time.
+- When two choices seem equally good, prefer the more widely watched one.
+
+BEFORE
+Alex was choosing three generally suitable titles without a separate purpose for each position.
+
+WHY WE TRIED IT
+Try to make the choice more repeatable by telling Alex exactly what each of the three positions should accomplish.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+The first pick is the closest to the favorite; the second is there because it matches genre and mood; the third is there because it fits the format and time. These are three different reasons for inclusion.",23,6,11,55,,,
+4,15f29a8,"WHAT CHANGED
+- Propose a prewritten, ranked menu of titles grouped by genre.
+- Use the Korean-drama list for a Korean favorite; otherwise start with the first genre named.
+- Skip titles that conflict with the requested format, things to avoid, or titles already seen. Take the first three remaining entries.
+- Do not use mood or time to choose from the menu. Tell the one-at-a-time version to read all six answers together when choosing.
+- Reject and remove this fixed-menu proposal before testing it; restore the earlier choosing rules.
+- The restored instructions include a reminder to consider the six answers together. No evaluation ran for the fixed menu.
+
+BEFORE
+Alex could choose from titles it knew, using the selection rules from Eval #3.
+
+WHY WE TRIED IT
+A fixed menu could make matching easier, but it would also restrict what Alex was allowed to recommend. That approach was not accepted.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+Instead of thinking of three suitable comedies, Alex would work down a prewritten comedy list and take the first three allowed entries. This approach was never measured.",0,,,,,,
+5,ac2be61,"WHAT CHANGED
+- Remove the separate job assigned to each recommendation.
+- Copy all six answers, in order, into a “Got it” line. Use that written summary when choosing.
+- Choose three well-known titles that fans of the recently enjoyed title might watch next.
+- Keep the movie/show and avoidance checks. Do not recommend the enjoyed title itself.
+- Explicitly stop using mood and available time to choose titles.
+- If no favorite is named, use the first genre; if no genre is named either, use general Netflix US popularity.
+- Remove the extra instruction to read the answers together; the copied summary now serves that purpose.
+
+BEFORE
+The three picks had different jobs, including matching mood and available time.
+
+WHY WE TRIED IT
+Reduce the number of competing preferences Alex had to balance and give both formats the same written summary before choosing.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+Alex could repeat “I want something light” and “I have one hour” in the summary, while still choosing mostly from fans’ next-watch options for the favorite. Repeating an answer did not mean it was used to choose the titles.",24,7,12,58,,,
+6,14bb779,"WHAT CHANGED
+- Replace “what fans watch next” with titles similar in genre, kind of story, and country or language.
+- Write the guide sentence before the picks: “Since you liked [title], here are 3 picks most like it:”.
+- Copy the exact wording and capitalization of every answer in the “Got it” line.
+- Keep movie/show and avoidance checks. A match to mood, time, or a separately named genre alone is not enough; the favorite remains the main choosing guide.
+- If no favorite is given, use popular choices in the first genre, or overall popularity if no genre is given.
+
+BEFORE
+Alex was choosing what fans of the favorite might watch next, which could include titles that were not very similar.
+
+WHY WE TRIED IT
+Make the reason for choosing the recommendations more specific and have Alex state that reason before producing the list.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+“Other titles fans watch” becomes “other titles with a similar story and feel.” For a Korean drama, the instruction now explicitly points toward a similar kind of Korean story.",24,9,12,75,,,
+7,e0e938c,"WHAT CHANGED
+- Look first for titles from the same series, fictional world, or creators as the favorite.
+- Then consider popular titles with a similar genre and story. If equally close, favor the more widely watched one.
+- If the person says “either” or gives no clear format, make every pick the same format as the favorite.
+- Keep the copied-answer line and the guide sentence before the picks.
+
+BEFORE
+Alex looked for similarity to the favorite, but several kinds of similarity could compete. A person saying “either” could receive a mixture of movies and shows.
+
+WHY WE TRIED IT
+Give Alex a clearer order for searching for choices and remove movie-versus-show uncertainty when the answer is “either.”
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+If the favorite is a TV show and the person says “either,” all three picks should be TV shows. A related series or a show by the same creators gets considered before a less directly related title.",72,21,36,58,18/24,18/24,2/48
+8,fc627c3,"WHAT CHANGED
+- Keep the Eval #7 prompt instructions unchanged.
+- Always send temperature 0, even if a different temperature is set elsewhere.
+- Add a fixed seed of 368: a repeatability setting intended to make choices steadier.
+- These are software settings, not new questions or choosing rules. They do not guarantee identical replies.
+
+BEFORE
+The temperature setting could be replaced by a website setting, and no repeatability seed was being sent.
+
+WHY WE TRIED IT
+Check whether changing the model-request settings, rather than adding more instructions, would make the two formats agree more often.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+The person answers exactly the same questions and Alex reads exactly the same instructions as in Eval #7. Only the settings accompanying the request change. This is a settings round, not a new question or choosing rule.",24,6,12,50,,,
+9,b9c3f78,"WHAT CHANGED
+- Give early priority only to sequels, prequels, and spin-offs from the same series or fictional world.
+- Remove “same creators” from that first-priority group. After related stories, use popular titles with a similar genre and story.
+- Add a final check that none of the recommendations repeats the enjoyed title.
+- If no favorite is named, use popular Netflix original TV series in the first genre, or overall if no genre is given.
+- The Netflix-original restriction applies only to the no-favorite case in this round, not to all recommendations.
+
+BEFORE
+Being made by the same creators was enough to give a title early priority, even if it was a different kind of story. The no-favorite choices were broader.
+
+WHY WE TRIED IT
+Make the first choices more directly related to the favorite and reduce the number of possible choices when the person gives little information.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+A spin-off of the favorite gets early priority. A completely different show by the same creator no longer gets that priority simply because of who made it.",24,7,12,58,,,
+10,ff8a6ad,"WHAT CHANGED
+- Keep similarity and related-story rules for picks 1 and 2.
+- For pick 3, choose another well-known title by the creator or director of pick 1.
+- If that creator has no other suitable title in the required format, use the creator or director of pick 2 instead.
+- Also exclude specials, documentaries, and behind-the-scenes programs about the favorite. Keep the final check against repeating the favorite.
+
+BEFORE
+All three recommendations were chosen mainly for resemblance to the person’s favorite.
+
+WHY WE TRIED IT
+Try a specific rule for the third pick, which otherwise had several plausible alternatives.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+After choosing recommendation A, Alex should look at who made A and choose another title by that person for pick 3. This refers to the maker of the first recommendation, not automatically the maker of the participant’s favorite.",24,6,12,50,,,
+11,3e9b45e,"WHAT CHANGED
+- Remove the special creator/director rule for pick 3. Return all three picks to similarity and related-story rules.
+- Write the three numbered title lines together, with no explanation between them.
+- Put the explanations after the full list. Begin each explanation with its title name and do not number it.
+
+BEFORE
+Each title was followed immediately by its explanation, and the third pick followed Eval #10’s creator/director rule.
+
+WHY WE TRIED IT
+Try choosing the entire three-title list before writing explanations that might influence later choices. Since the third-pick rule was also removed, the round does not isolate the effect of reply order alone.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+Before: title A, explanation A, title B, explanation B, title C. After: title A, title B, title C, followed by all three explanations.",24,5,12,42,,,
+12,0319a43,"WHAT CHANGED
+- Allow only titles described as Netflix originals for all three picks.
+- Choose well-known originals similar to the favorite. Prefer the more popular title when two are equally close.
+- Remove the special priority for sequels and related fictional worlds.
+- Put each explanation directly under its title again.
+- Keep the format and avoidance checks, plus exclusions for the favorite and programs about it.
+- Remove the separate final-check sentence, while keeping the rule against recommending the favorite.
+- If no favorite is given, continue using popular Netflix original series.
+
+BEFORE
+Recommendations could include titles Netflix streamed without making or releasing them as originals. Related stories received special priority, and explanations appeared after the full title list.
+
+WHY WE TRIED IT
+Give Alex fewer possible titles and a shorter set of choosing rules to follow. This also changes the range of recommendations the person can receive.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+A suitable title would now be excluded if it did not count as a Netflix original under the prompt’s rule. Matching could improve simply because Alex has a smaller pool of titles to choose from.",24,9,12,75,,,
+13,5b8de24,"WHAT CHANGED
+- Write either “3 Netflix original movies” or “3 Netflix original TV shows” in the sentence before the picks.
+- Choose one format. If the person says “either,” use the favorite’s format.
+- Exclude shows that first aired on a TV network, even if Netflix streams them.
+- If there is no favorite, use the first three shows on Netflix’s official all-time “Most Popular English TV” list.
+- The app does not look up that list. Alex is instructed to rely on its own knowledge of it.
+
+BEFORE
+The Netflix-original and movie/show restrictions were in the instructions, but Alex’s introductory sentence only promised three similar picks.
+
+WHY WE TRIED IT
+Have Alex write the key restrictions immediately before naming titles and give the no-favorite case a more specific starting point.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+The lead-in changes from “here are 3 picks most like it” to “here are 3 Netflix original TV shows most like it.” This makes both the allowed source and the format explicit before the titles appear.",72,31,36,86,22/24,20/24,2/48
+14,6e0e206,"WHAT CHANGED
+- When two titles are equally similar to the favorite, choose the earlier release.
+- This replaces the previous instruction to choose the more widely watched title in that situation.
+- Keep all other Eval #13 instructions and request settings. Release dates still come from Alex’s knowledge, not a lookup.
+
+BEFORE
+For two similarly suitable Netflix originals, Alex was told to prefer the one it believed more people had watched.
+
+WHY WE TRIED IT
+Try a more specific way to choose between two similar options instead of asking Alex to estimate which is more popular.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+If one equally suitable title was released in 2018 and another in 2020, the instruction says to choose the 2018 title.",72,30,36,83,22/24,23/24,6/48
+15,4f50c36,"WHAT CHANGED
+- Exclude a show that first aired on a TV network in any country, even if Netflix later streams it or calls it an original.
+- Use Breaking Bad and Money Heist as examples of titles excluded under this experiment’s rule.
+- Keep the earlier-release rule, answer copying, favorite-based similarity, temperature 0, and seed 368.
+
+BEFORE
+The prompt excluded shows that first aired on a TV network, but the rule could still be interpreted differently for shows from other countries or later branded by Netflix.
+
+WHY WE TRIED IT
+Reduce disagreement about which titles are allowed, rather than changing what kind of story the person wants. This is the definition written into the prompt, not a fresh check of Netflix’s catalog.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+If a show began on a network outside the US and Netflix later acquired it, Alex should still leave it out under this version of the instructions.",72,30,36,83,21/24,21/24,0/48
+16,87e7f0c,"WHAT CHANGED
+- Keep both Eval #15 prompts exactly the same.
+- Stop sending the seed. Use the website’s temperature setting if present, otherwise 0.2.
+- The actual website override was not checked, so the live temperature is not confirmed to have been 0.2.
+- After testing, restore temperature 0 and seed 368 in commit 04ac259.
+
+BEFORE
+Alex used the Eval #15 prompts while requests always included temperature 0 and seed 368.
+
+WHY WE TRIED IT
+Compare the request settings while holding the instructions constant, so this round focuses on settings rather than another wording change.
+
+EXAMPLE (ILLUSTRATIVE, NOT A RECORDED REPLY)
+The person sees the same questions and Alex reads the same choosing rules as in Eval #15. Only the settings intended to influence variation are changed; afterwards, the earlier settings are put back.",72,26,36,72,20/24,20/24,0/48
+latest_not_evaluated,3038eb2,"NOT YET EVALUATED
+
+WHAT CHANGED
+- Use all six answers when choosing: requested format and things to avoid first, then similarity to the favorite, then genres and mood, then available time.
+- If no favorite is given, choose using genres and mood.
+- Remove the Netflix-original-only restriction. Keep the requirement to recommend real, released titles believed available on Netflix US.
+- Introduce the picks as “Based on your answers,” rather than “Since you liked [title].”.
+- Keep the same six questions. What changes is how their answers guide the picks.
+- NEW EVALUATION STILL NEEDED: this latest combination of instructions has not had its own evaluation. Earlier scores do not apply to it.",0,,,,,,
